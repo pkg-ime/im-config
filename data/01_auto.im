@@ -1,0 +1,11 @@
+# start most popular available input method automatically
+# vim: set sts=4 expandtab:
+# auto mode skips script starting in 0 and 9
+for IM_CONFIG_SCRIPT_PATH in $IM_CONFIG_DATA/[12345678]*.im ; do
+    IM_CONFIG_SCRIPT=$(name_im $IM_CONFIG_SCRIPT_PATH)
+    if check_avail_im $IM_CONFIG_SCRIPT ; then
+        run_im $IM_CONFIG_SCRIPT
+        break
+    fi
+done
+

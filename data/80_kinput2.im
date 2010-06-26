@@ -1,0 +1,15 @@
+# start IBus
+# vim: set sts=4 expandtab:
+
+# Since this is not so used, I only provide canna case only.
+# No one uses freewnn-jserver.
+
+# start kinput2 daemon
+if [ -x /usr/bin/kinput2-canna ]; then
+    /usr/bin/kinput2-canna -xim &
+elif [ -x /usr/bin/kinput2-canna-wnn ]; then
+    /usr/bin/kinput2-canna-wnn -canna -xim &
+    # Alternatively, you can cusomize this as:
+    # /usr/bin/kinput2-canna-wnn -wnn -xim &
+fi
+

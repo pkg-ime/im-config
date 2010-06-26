@@ -1,0 +1,24 @@
+# start IBus
+# vim: set sts=4 expandtab:
+
+# start gcin daemon
+/usr/bin/gcin &
+
+# set variables for the plain XIM
+XMODIFIERS=@im=gcin
+
+# use immodule when available for GTK
+if [ -e /usr/lib/gtk-2.0/*/immodules/gcin.so ]; then
+    GTK_IM_MODULE=gcin
+else
+    GTK_IM_MODULE=xim
+fi
+
+# use immodule when available for QT
+if [ -e /usr/lib/qt3/plugins/inputmethods/libqgcin.so ] ||\
+   [ -e /usr/lib/qt4/plugins/inputmethods/im-gcin.so ]; then
+    QT_IM_MODULE=gcin
+else
+    QT_IM_MODULE=xim
+fi
+

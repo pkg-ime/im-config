@@ -1,0 +1,67 @@
+# Input Method configuration, im-config.common
+# (C) Osamu Aoki <osamu@debian.org>, GPL-2+
+# vim: set sts=4 expandtab:
+#
+#############################################################
+# Common variabless and functions
+#############################################################
+. /usr/share/im-config/xinputrc.common
+
+if [ $(id -u) = 0 ]; then
+    IM_CONFIG_XINPUTRC=$IM_CONFIG_XINPUTRC_SYS
+    IM_CONFIG_XINPUTRC_DSC="system configuration"
+else
+    IM_CONFIG_XINPUTRC=$IM_CONFIG_XINPUTRC_USR
+    IM_CONFIG_XINPUTRC_DSC="user configuration"
+fi
+#############################################################
+# Basic functions used by im-config
+#############################################################
+
+# active_im
+active_im () {
+    if [ ! -r $IM_CONFIG_XINPUTRC ]; then
+        echo "unreadable"
+    elif check_md5sum $IM_CONFIG_XINPUTRC ; then
+        IM_CONFIG_ACTIVE_IM=$(sed -n -e 's/^run_im \([^ ]*\) *$/\1/p' < $IM_CONFIG_XINPUTRC)
+        if [ -z "$IM_CONFIG_ACTIVE_IM" ]; then
+            echo "bogus"
+        elif [ -r $IM_CONFIG_DATA/[012345678]?_$IM_CONFIG_ACTIVE_IM.dsc ]; then
+            echo $IM_CONFIG_ACTIVE_IM
+        else
+            echo "bogus"
+        fi
+    else
+        echo "custom"
+    fi
+}
+
+# dsc_im <config>
+dsc_im () {
+    if [ -r $IM_CONFIG_DATA/??_$1.dsc ] ; then
+        # use subshell here
+        {
+            # subshell
+            . $IM_CONFIG_DATA/??_$1.dsc
+            echo $IM_CONFIG_DSC
+        }
+    else
+        echo "ERROR: description for $1 not found." >&2
+    fi
+}
+
+# add_md5sum filename
+add_md5sum () {
+    echo "# im-config signiture: $(md5sum < $1)" >> $1
+}
+
+# check_md5sum filename
+check_md5sum () {
+    if [ -r "$1" ] && \
+       [ "# im-config signiture: $(head -n -1 $1 | md5sum)" = "$(tail -n 1 $1)" ]; then
+        true
+    else
+        false
+    fi
+}
+

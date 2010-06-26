@@ -1,0 +1,11 @@
+# start IBus
+# vim: set sts=4 expandtab:
+
+# start fcitx daemon
+/usr/bin/fcitx &
+
+# set variables for the plain XIM
+XMODIFIERS=@im=fcitx
+GTK_IM_MODULE=xim
+QT_IM_MODULE=xim
+

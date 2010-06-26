@@ -1,0 +1,137 @@
+im-config for Debian                     Osamu Aoki <osamu@debian.org>
+
+=======================================================================
+!	How To Configure Input Method
+=======================================================================
+
+For user configuration, use GUI menu for "System" -> "Preferences" -> 
+"Input Method" which runs "im-config".
+
+For user configuration, execute from X terminal emulator as:
+  $ im-config
+
+For system wide default, execute from X terminal emulator as:
+  $ sudo im-config
+
+=========================================================================
+!	Quick Guide to Setup Imput Method
+=========================================================================
+
+* IBus (under GNOME)
+  - Install all useful IBus packages (use "l" under aptitude to find them.)
+    ibus, ibus-anthy (Japanese), ibus-gtk, ...
+  - "System" -> "Preferences" -> "Input Method" and select "ibus"
+  - "System" -> "Preferences" -> "IBus Preferences" -> "Input Method" -> 
+    "Select an input method" -> "Japanese" -> "Anthy" and click "Add". 
+  - Relogin to user account to refresh X session.
+
+* uim (under GNOME)
+  - Install all useful uim packages (use "l" under aptitude to find them.)
+    uim, uim-anthy (Japanese), uim-gtk2.0, ...
+  - "System" -> "Preferences" -> "Input Method" and select
+      - "uim-systray"     for status display in systray.
+      - "uim-toolbar-gtk" for status display in toolbar with GTK for GNOME.
+      - "uim-toolbar-qt"  for status display in toolbar with QT for KDE.
+  - Relogin to user account to refresh X session.
+
+  FYI: (With the method written in uim package, you can use toolbar under 
+        non-gnome environment)
+
+* SCIM (under GNOME)
+  - Install all useful scim packages (use "l" under aptitude to find them.)
+    scim, scim-anthy (Japanese), ...
+  - "System" -> "Preferences" -> "Input Method" and select "scim"
+  - Relogin to user account to refresh X session.
+
+* Not to set MODIFIERS to make X act in old en_US way.
+  - select "none" in im-config command.
+
+=========================================================================
+!	Trouble Shoot for Input Method
+=========================================================================
+
+If you have any problem, see the first part of ~/.xsession-errors .
+
+Somehow, relogin may cause unknown errors.  When you check problem with this
+relogin, please check to see the reboot has the same issue.
+
+Please file your bug report with the reportbug program against im-config
+package.
+
+=======================================================================
+!	How im-config works!
+=======================================================================
+
+When X Window System is started, it parses hook script files in
+/etc/X1/Xsesion.d/ directory.  A hook script,
+/etc/X1/Xsesion.d/80im-config_launch, is placed by the im-config package.
+
+If user's configuration file, $HOME/.xinputrc, exists, this
+80im-config_launch hook script sources user's configuration file.
+
+Otherwise, this 80im-config_launch hook script sources the system wide
+configuration file, /etc/X11/xinit/xinputrc.
+
+The system wide configuration file, /etc/X11/xinit/xinputrc, has
+essentially the following content as installed:
+
+----
+set_im default
+----
+
+Here, set_im is shell function provided by this im-config system to source the
+corresponding configuration script 00_default.im in /usr/share/im-config/data.
+Since usually /etc/default/im-config defines IM_CONFIG_DEFAULT_MODE=auto, the
+most versatile input method existing on your system will be activated via
+01_auto.im.
+
+When a normal user executes the im-config command, it generates user's
+configuration file.  For example, if you select Ibus input method,
+generated user's configuration file, $HOME/.xinputrc, as the following.
+
+----
+set_im ibus
+----
+
+Here, set_im sources the corresponding configuration script 30_ibus.im in
+/usr/share/im-config/data.
+
+When the root executes the im-config command, it updates the system wide
+configuration file, /etc/X11/xinit/xinputrc, instead.
+
+If you wish to create some custom configuration beyong what the im-config can
+do, you can do so by placing your custom input method configuration.  When you
+do this, *.im files in /usr/share/im-config/data should give you good idea how
+these can be done.  auto-cjkv.im tells how input method can be customized for
+each locale.
+
+The leading numbers for files in /usr/share/im-config/data have special meaning
+as follows:
+
+00-79: These show up as a part of selection menu.
+10-79: The smallest number one which exists on the system is activated by 
+       automatic selection such as auto and auto-cjk.
+
+00-09: Automated Input Method choices
+10-49: Input Method supporting multiple languages.
+50-69: Input Method supporting single or limitted languages.
+70-79: No special Input Method (none)
+80-89: Input Method support too old to be included in menu but accessible
+90-99: For internal program use
+
+These configuration files are POSIX shell script.  Please avoid using BASH
+features.
+
+Some sanity check are implemented when you use im-config.  For example, when a
+user makes changes to these configuration files without using im-config,
+im-config will detect it using a md5sum hush embedded in the comment and will
+not change its content.  In order to overwrite such modified configuration
+files by im-config, you have to erase them first.
+
+If the input method related variables such as "$XIM", "$XIM_PROGRAM",
+"$XIM_ARGS", "$XMODIFIERS", "$GTK_IM_MODULE", "$QT_IM_MODULE", and
+$XIM_PROGRAM_SETS_ITSELF_AS_DAEMON", are set by other program before
+80im-config_launch, 80im-config_launch will skip setting input method.
+
+ -- Osamu Aoki <osamu@debian.org>,  Tue, 22 Jun 2010 22:53:42 +0900
+

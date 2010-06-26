@@ -1,0 +1,31 @@
+Source: im-config
+Section: x11
+Priority: optional
+Maintainer: Osamu Aoki <osamu@debian.org>
+Build-Depends: debhelper (>= 7.0.50~)
+Standards-Version: 3.8.4
+Vcs-Git: git://git.debian.org/git/collab-maint/im-config.git
+Vcs-browser: http://git.debian.org/?p=collab-maint/im-config.git
+
+Package: im-config
+Architecture: all
+Depends: zenity, ${misc:Depends}
+Recommends: x11-common
+Conflicts: im-switch
+Provides: im-switch
+Description: Input method configuration framework
+ im-config package provides the framework to configure and to switch
+ the input method on X Window System. This input method is the essential
+ mechanism for Japanese, Chinese and Korean (CJK) languages to enter
+ their non-ASCII native characters. 
+ .
+ Many modern input methods such as IBus support not only one of these CJK
+ languages but support almost all languages simultaneously by
+ dynamically switching keyboard modes with GUI helper program.
+ .
+ By installing this package, the most desirable input method and its
+ backend conversion engine are automatically configured with both the X
+ Window System Input Method (XIM), GTK input method module and Qt input
+ method module.
+ .
+ You can further customize your input method with 'im-config' command.

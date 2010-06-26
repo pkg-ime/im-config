@@ -1,0 +1,10 @@
+#!/usr/bin/make -f
+%:
+	dh $@
+
+override_dh_auto_build:
+	sed -e "s/@@VERSION@@/$$(dpkg-parsechangelog --format dpkg|sed -ne '/^Version/s/Version: *//p')/"\
+         <share/xinputrc.common.in >share/xinputrc.common
+
+override_dh_auto_clean:
+	-rm -f share/xinputrc.common

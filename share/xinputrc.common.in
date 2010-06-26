@@ -1,0 +1,57 @@
+# Common shell routine used by im-config
+# /usr/share/im-config/xinputrc.common
+# (C) Osamu Aoki <osamu@debian.org>, GPL-2+
+# vim: set sts=4 expandtab:
+#
+#############################################################
+# Common variabless used by all im-config
+#############################################################
+IM_CONFIG_VERSION=@@VERSION@@
+IM_CONFIG_DATA=/usr/share/im-config/data
+IM_CONFIG_XINPUTRC_USR=$HOME/.xinputrc
+IM_CONFIG_XINPUTRC_SYS=/etc/X11/xinit/xinputrc
+IM_CONFIG_DEFAULT=/etc/default/im-config
+
+if [ -r $IM_CONFIG_DEFAULT ]; then
+    . $IM_CONFIG_DEFAULT
+fi
+#############################################################
+# Common functions used by im-config hook script
+#############################################################
+
+# sanity check
+# check_avail_im <config>
+check_avail_im () {
+    if [ -r $IM_CONFIG_DATA/[012345678]?_$1.dsc ]; then
+        . $IM_CONFIG_DATA/[012345678]?_$1.dsc
+        if [ -r $IM_CONFIG_KEY_FILE ]; then
+            true
+        else
+            false
+        fi
+    else
+        false
+    fi
+}
+
+# 
+# name_im <full_path>
+name_im () {
+    local x
+    x=${1#$IM_CONFIG_DATA/??_}
+    x=${x%.im}
+    echo -n $x
+}
+
+# run selected input method script
+# run_im <config>
+run_im () {
+    if [ -r $IM_CONFIG_DATA/[012345678]?_$1.im ]; then
+        . $IM_CONFIG_DATA/[012345678]?_$1.im
+        echo "script for $1 started." >&2
+    else
+        echo "ERROR: script for $1 not found." >&2
+    fi
+}
+
+

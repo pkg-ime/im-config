@@ -1,0 +1,56 @@
+.TH IM\-CONFIG 8 
+.\" NAME should be all caps, SECTION should be 1-8, maybe w/ subsection
+.\" other parms are allowed: see man(7), man(1)
+.SH NAME
+im\-config \- set up input method configuration for X Window System
+.SH SYNOPSIS
+.TP
+.B im\-config
+.TP
+.B im\-config.gtk
+.TP
+.B im\-config.console
+.SH "DESCRIPTION"
+This manual page very briefly documents the
+.B im\-config
+command.
+.PP
+The
+.B im\-config 
+command provides the framework to configure the input 
+method on X Window System. This input method 
+is the essential mechanism for Japanese, Chinese and Korean (CJK) 
+languages to enter their non-ASCII native characters.
+.PP
+Some input methods such as IBus, SCIM, and uim support not only one of these CJK languages 
+but support almost all languages simultaneously by dynamically switching 
+keyboard modes with GUI.
+.PP
+Configuration files for all input methods are located in
+.B /usr/share/im-config/config
+Each file name start with 2 digits number and the smallest one has priority.
+The highest priority input method is used under auto configuration mode.
+.PP
+The X start up code sources
+.B /etc/X11/Xsession.d/80im-config_launch
+which read the configuration file and activates the input method.
+If the user configuration file
+.B ~/.xinputrc
+exists, it is used.  Otherwise the system configuration file
+.B /etc/X11/xinit/xinputrc
+is used.
+.PP
+This structure ensures to have different imput methods to be installed side-by-side.
+.PP
+.B im\-config
+takes no options and use available UI.
+.B im\-config.gtk
+uses GTK UI.
+.B im\-config.console
+uses console dialog UI.
+
+.SH "SEE ALSO"
+.BR /usr/share/doc/im\-config/README.Debian
+.SH AUTHOR
+This manual page was written by Osamu Aoki <osamu@debian.org>,
+for the Debian GNU/Linux system (but may be used by others).

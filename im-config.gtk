@@ -1,0 +1,59 @@
+#!/bin/sh
+# Input Method GTK configuration
+# (C) Osamu Aoki <osamu@debian.org>, GPL-2+
+# vim: set sts=4 expandtab:
+#
+#############################################################
+# Common variables, functions, sanity checks
+#############################################################
+. /usr/share/im-config/im-config.common
+#############################################################
+# GTK UI for im-config
+#############################################################
+IM_CONFIG_ACTIVE=$(active_im)
+
+IM_CONFIG_RESTART="Restart the X session to activate the new Imput Method configuration."
+IM_CONFIG_DOC="Please read /usr/share/doc/im-config/README.Debian.gz for details."
+
+if [ "$IM_CONFIG_ACTIVE" = "custom" ]; then
+    IM_CONFIG_MESSAGE="Leaving $(dsc_im $IM_CONFIG_ACTIVE) in the $IM_CONFIG_XINPUTRC_DSC file $IM_CONFIG_XINPUTRC untouched."
+    zenity --info --text "${IM_CONFIG_MESSAGE}\n\n$IM_CONFIG_DOC"
+else
+    IM_CONFIG_MENULIST="zenity --title=\"Input Method Configuration (im-config, ver. $IM_CONFIG_VERSION)\" --width=600 --height=400 --text=\"Select $IM_CONFIG_XINPUTRC_DSC for Input Method. User configuration supercedes system one.\" --list --radiolist --hide-column=2 --column Choice --column value --column \"Description of Input Method\""
+    # Make selection menu list (00-79 only)
+    for x in $IM_CONFIG_DATA/[01234567]?_*.im ; do
+        y=$(name_im $x)
+        if [ $y = $IM_CONFIG_ACTIVE ]; then
+            if check_avail_im $x ; then
+                IM_CONFIG_MENULIST="$IM_CONFIG_MENULIST TRUE $y \"$(dsc_im $y) (available)\""
+            else
+                IM_CONFIG_MENULIST="$IM_CONFIG_MENULIST TRUE $y \"$(dsc_im $y)\""
+            fi
+        else
+            if check_avail_im $x ; then
+                IM_CONFIG_MENULIST="$IM_CONFIG_MENULIST FALSE $y \"$(dsc_im $y) (available)\""
+            else
+                IM_CONFIG_MENULIST="$IM_CONFIG_MENULIST FALSE $y \"$(dsc_im $y)\""
+            fi
+        fi
+    done
+    IM_CONFIG_MENULIST="$IM_CONFIG_MENULIST FALSE REMOVE \"Remove the $IM_CONFIG_XINPUTRC_DSC file.\""
+    IM_CONFIG_SELECT=$(eval $IM_CONFIG_MENULIST)
+
+    if [ -z "$IM_CONFIG_SELECT" ]; then
+        IM_CONFIG_SELECT=$IM_CONFIG_ACTIVE
+        IM_CONFIG_MESSAGE="Keeping the $IM_CONFIG_XINPUTRC_DSC file $IM_CONFIG_XINPUTRC unchanged as $(dsc_im $IM_CONFIG_SELECT)."
+        zenity --info --text "${IM_CONFIG_MESSAGE}\n\n${IM_CONFIG_DOC}"
+    elif [ "$IM_CONFIG_SELECT" = "REMOVE" ]; then
+        rm -f $IM_CONFIG_XINPUTRC
+        IM_CONFIG_MESSAGE="Removing the $IM_CONFIG_XINPUTRC_DSC file $IM_CONFIG_XINPUTRC."
+        zenity --info --text "${IM_CONFIG_MESSAGE}\n\n${IM_CONFIG_RESTART}\n\n${IM_CONFIG_DOC}"
+    else
+        echo "# im-config(8) generated on $(date -R)" > $IM_CONFIG_XINPUTRC
+        echo "run_im $IM_CONFIG_SELECT" >> $IM_CONFIG_XINPUTRC
+        add_md5sum $IM_CONFIG_XINPUTRC
+        IM_CONFIG_MESSAGE="Setting the $IM_CONFIG_XINPUTRC_DSC in $IM_CONFIG_XINPUTRC to $(dsc_im $IM_CONFIG_SELECT)."
+        zenity --info --text "${IM_CONFIG_MESSAGE}\n\n${IM_CONFIG_RESTART}\n\n${IM_CONFIG_DOC}"
+    fi
+fi
+

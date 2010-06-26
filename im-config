@@ -1,0 +1,31 @@
+#!/bin/sh
+# Input Method configuration
+# (C) Osamu Aoki <osamu@debian.org>, GPL-2+
+# vim: set sts=4 expandtab:
+#############################################################
+# Common variabless and functions
+#############################################################
+. /usr/share/im-config/im-config.common
+# if -d
+if [ "$1" = "-d" ]; then
+    # debug mode :-)
+    set -x
+elif [ -n "$1" ]; then
+    echo "Input Method Configuration (im-config: ver. $IM_CONFIG_VERSION)" >&2
+    echo "(c) Osamu Aoki <osamu@debian.org, GPL-2+" >&2
+    echo "See im-config(8), /usr/share/doc/im-config/README.Debian.gz." >&2
+fi
+#############################################################
+# Call real im-config UI
+#############################################################
+if [ "x$DISPLAY" = "x" ]; then
+    /usr/bin/im-config.console
+elif [ -f /usr/bin/zenity ]; then
+    . /usr/bin/im-config.gtk
+else
+    x-terminal-emulator -e /usr/bin/im-config.console
+fi
+
+
+
+

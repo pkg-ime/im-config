@@ -1,0 +1,11 @@
+#!/bin/sh
+# Input Method console configuration
+# (C) Osamu Aoki <osamu@debian.org>, GPL-2+
+# vim: set sts=4 expandtab:
+#
+#############################################################
+# Common variables, functions, sanity checks
+#############################################################
+. /usr/share/im-config/im-config.common
+echo "menu with dialog to be implimented."
+exit 0

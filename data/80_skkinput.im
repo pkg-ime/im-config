@@ -1,0 +1,11 @@
+# start IBus
+# vim: set sts=4 expandtab:
+
+# start fcitx daemon
+/usr/bin/skkinput &
+
+# set variables for the plain XIM
+XMODIFIERS=@im=skkinput
+GTK_IM_MODULE=xim
+QT_IM_MODULE=xim
+

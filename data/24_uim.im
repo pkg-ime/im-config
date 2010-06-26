@@ -1,0 +1,32 @@
+# start IBus
+# vim: set sts=4 expandtab:
+
+# start uim-xim daemon
+/usr/bin/uim-xim &
+
+# set variables for the plain XIM
+XMODIFIERS=@im=uim
+
+# Starting GUI
+if [ -x /usr/bin/uim-toolbar-gtk-systray ]; then
+    (sleep 10; uim-toolbar-gtk-systray) &
+elif [ -x /usr/bin/uim-toolbar-gtk]; then
+    (sleep 10; uim-toolbar-gtk) &
+elif [ -x /usr/bin/uim-toolbar-qt]; then
+    (sleep 10; uim-toolbar-qt) &
+fi
+
+# use immodule when available for GTK
+if [ -e /usr/lib/gtk-2.0/*/immodules/im-uim.so ]; then
+    GTK_IM_MODULE=uim
+else
+    GTK_IM_MODULE=xim
+fi
+
+# use immodule when available for QT
+if [ -e /usr/lib/qt4/plugins/inputmethods/libuiminputcontextplugin.so] ||\
+   [ -e /usr/lib/qt3/plugins/inputmethods/libquiminputcontextplugin.so ]; then
+    QT_IM_MODULE=uim
+else
+    QT_IM_MODULE=xim
+fi

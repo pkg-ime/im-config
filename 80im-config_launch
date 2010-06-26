@@ -1,0 +1,21 @@
+#!/bin/sh
+# vim: set sts=4 expandtab: 
+# Copyright (C) 2010 Osamu Aoki <osamu@debian.org> 
+# GNU General Public License version 2 or later.
+#
+# Input Method for X, GNOME, KDE, ... see im-config(8).
+
+# If already tweaked, keep hands off :-)
+if [ -z "$XMODIFIERS" ] && \
+   [ -z "$GTK_IM_MODULE" ] && \
+   [ -z "$QT_IM_MODULE" ]; then
+    # initialize all im-config common functions and parameters
+    . /usr/share/im-config/xinputrc.common
+    # source the first found configuration file
+    if [ -r "$IM_CONFIG_XINPUTRC_USR" ]; then
+        . $IM_CONFIG_XINPUTRC_USR
+    elif [ -r "$IM_CONFIG_XINPUTRC_SYS" ]; then
+        . $IM_CONFIG_XINPUTRC_SYS
+    fi
+fi
+
