@@ -28,17 +28,17 @@ X-COMMENT:
  .
  After maintaining im-switch (Version 1.5-1.20), Osamu Aoki realized it
  is too complicated for the simple task it does and decided to rewrite a
- new package with the same functionlity via much simpler structure as
+ new package with the same functionality via much simpler structure as
  im-switch.
  .
  The package description of the im-config is based on the one by Kenshi
  Muto <kmuto@debian.org> for im-config with some modifications by Osamu
  Aoki.
  .
- The Fredesktop menu data was originally created by Osamu Aoki for
+ The Fredesktop.org menu data was originally created by Osamu Aoki for
  im-config and its translation data were added by the effort of Andrew
  Lee <ajqlee@debian.org>.
  .
  Osamu Aoki thanks the original authors of im-switch for giving him
- insprations and reference data to write this im-config.
+ inspirations and reference data to write this im-config.
 

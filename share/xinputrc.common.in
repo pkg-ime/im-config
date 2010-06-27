@@ -16,7 +16,7 @@ if [ -r $IM_CONFIG_DEFAULT ]; then
     . $IM_CONFIG_DEFAULT
 fi
 #############################################################
-# Common functions used by im-config hook script
+# Common functions used by im-config hook script (auto mode)
 #############################################################
 
 # sanity check
@@ -43,6 +43,9 @@ name_im () {
     echo -n $x
 }
 
+#############################################################
+# Common functions used by im-config hook script (any mode)
+#############################################################
 # run selected input method script
 # run_im <config>
 run_im () {

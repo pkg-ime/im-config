@@ -25,7 +25,7 @@ Description: Input method configuration framework
  .
  By installing this package, the most desirable input method and its
  backend conversion engine are automatically configured with both the X
- Window System Input Method (XIM), GTK input method module and Qt input
+ Window System Input Method (XIM), GTK+ input method module and Qt input
  method module.
  .
  You can further customize your input method with 'im-config' command.

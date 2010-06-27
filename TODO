@@ -3,8 +3,7 @@ Action items
 * console dialog
 
 * more input method supports
- - gcin
- - uim
- - ...
+ - Old style XMODIFIERS settings (as 80_*)
+ - IMMODULE only methos support  (as 80_*)
 
 * migration from im-switch

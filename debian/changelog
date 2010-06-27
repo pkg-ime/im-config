@@ -1,6 +1,7 @@
 im-config (0.1) unstable; urgency=low
 
-  * Created a new package to manage the imput method on Debian with much
-    simpler structure than im-switch
+  * Created a new package to manage the imput method on Debian with a
+    much simpler structure than that of im-switch.
+  * Initial release to Debian. Closes: #587258
 
- -- Osamu Aoki <osamu@debian.org>  Tue, 22 Jun 2010 22:32:46 +0900
+ -- Osamu Aoki <osamu@debian.org>  Sun, 27 Jun 2010 14:41:55 +0900

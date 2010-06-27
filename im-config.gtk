@@ -16,7 +16,7 @@ IM_CONFIG_RESTART="Restart the X session to activate the new Imput Method config
 IM_CONFIG_DOC="Please read /usr/share/doc/im-config/README.Debian.gz for details."
 
 if [ "$IM_CONFIG_ACTIVE" = "custom" ]; then
-    IM_CONFIG_MESSAGE="Leaving $(dsc_im $IM_CONFIG_ACTIVE) in the $IM_CONFIG_XINPUTRC_DSC file $IM_CONFIG_XINPUTRC untouched."
+    IM_CONFIG_MESSAGE="This file has been modified externally for im-config.\n\nLeaving $(dsc_im $IM_CONFIG_ACTIVE) in the $IM_CONFIG_XINPUTRC_DSC file $IM_CONFIG_XINPUTRC untouched."
     zenity --info --text "${IM_CONFIG_MESSAGE}\n\n$IM_CONFIG_DOC"
 else
     IM_CONFIG_MENULIST="zenity --title=\"Input Method Configuration (im-config, ver. $IM_CONFIG_VERSION)\" --width=600 --height=400 --text=\"Select $IM_CONFIG_XINPUTRC_DSC for Input Method. User configuration supercedes system one.\" --list --radiolist --hide-column=2 --column Choice --column value --column \"Description of Input Method\""
