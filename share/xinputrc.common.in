@@ -24,7 +24,7 @@ fi
 check_avail_im () {
     if [ -r $IM_CONFIG_DATA/[012345678]?_$1.dsc ]; then
         . $IM_CONFIG_DATA/[012345678]?_$1.dsc
-        if [ -r $IM_CONFIG_KEY_FILE ]; then
+        if [ -r $IM_CONFIG_KEY ]; then
             true
         else
             false
@@ -48,6 +48,9 @@ name_im () {
 run_im () {
     if [ -r $IM_CONFIG_DATA/[012345678]?_$1.im ]; then
         . $IM_CONFIG_DATA/[012345678]?_$1.im
+        export XMODIFIERS
+        export GTK_IM_MODULE
+        export QT_IM_MODULE
         echo "script for $1 started." >&2
     else
         echo "ERROR: script for $1 not found." >&2

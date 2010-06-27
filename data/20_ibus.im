@@ -2,7 +2,7 @@
 # vim: set sts=4 expandtab:
 
 # start IBus daemon
-/usr/bin/ibus-daemon -d --xim
+/usr/bin/ibus-daemon --daemonize --xim
 
 # set variables for the plain XIM
 XMODIFIERS=@im=ibus
