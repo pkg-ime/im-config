@@ -1,6 +1,15 @@
+im-config (0.2) unstable; urgency=low
+
+  * Set menu entry to be NoDisplay.
+  * Improved GTK+ menu messages.
+  * Added console menu.
+  * Updated documentation.
+
+ -- Osamu Aoki <osamu@debian.org>  Mon, 28 Jun 2010 22:22:55 +0900
+
 im-config (0.1) unstable; urgency=low
 
-  * Created a new package to manage the imput method on Debian with a
+  * Created a new package to manage the input method on Debian with a
     much simpler structure than that of im-switch.
   * Initial release to Debian. Closes: #587258
 
