@@ -19,4 +19,4 @@ Exec=im-config
 Terminal=false
 Icon=input-keyboard
 Categories=Settings
-
+NoDisplay=true
