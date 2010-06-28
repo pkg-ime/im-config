@@ -19,25 +19,21 @@ if [ "$IM_CONFIG_ACTIVE" = "custom" ]; then
     IM_CONFIG_MESSAGE="This file has been modified externally for im-config.\n\nLeaving $(dsc_im $IM_CONFIG_ACTIVE) in the $IM_CONFIG_XINPUTRC_DSC file $IM_CONFIG_XINPUTRC untouched."
     zenity --info --text "${IM_CONFIG_MESSAGE}\n\n$IM_CONFIG_DOC"
 else
-    IM_CONFIG_MENULIST="zenity --title=\"Input Method Configuration (im-config, ver. $IM_CONFIG_VERSION)\" --width=600 --height=400 --text=\"Select $IM_CONFIG_XINPUTRC_DSC for Input Method. User configuration supercedes system one.\" --list --radiolist --hide-column=2 --column Choice --column value --column \"Description of Input Method\""
+    IM_CONFIG_MENULIST="zenity --title=\"Input Method Configuration (im-config, ver. $IM_CONFIG_VERSION)\" --width=600 --height=400 --text=\"Select $IM_CONFIG_XINPUTRC_DSC for Input Method. User configuration supercedes system one.\" --list --radiolist --column select --column name --column \"Description of Input Method Configuration\""
     # Make selection menu list (00-79 only)
     for x in $IM_CONFIG_DATA/[01234567]?_*.im ; do
         y=$(name_im $x)
         if [ $y = $IM_CONFIG_ACTIVE ]; then
-            if check_avail_im $x ; then
-                IM_CONFIG_MENULIST="$IM_CONFIG_MENULIST TRUE $y \"$(dsc_im $y) (available)\""
-            else
+            if check_avail_im $y ; then
                 IM_CONFIG_MENULIST="$IM_CONFIG_MENULIST TRUE $y \"$(dsc_im $y)\""
             fi
         else
-            if check_avail_im $x ; then
-                IM_CONFIG_MENULIST="$IM_CONFIG_MENULIST FALSE $y \"$(dsc_im $y) (available)\""
-            else
+            if check_avail_im $y ; then
                 IM_CONFIG_MENULIST="$IM_CONFIG_MENULIST FALSE $y \"$(dsc_im $y)\""
             fi
         fi
     done
-    IM_CONFIG_MENULIST="$IM_CONFIG_MENULIST FALSE REMOVE \"Remove the $IM_CONFIG_XINPUTRC_DSC file.\""
+    IM_CONFIG_MENULIST="$IM_CONFIG_MENULIST FALSE REMOVE \"remove the $IM_CONFIG_XINPUTRC_DSC file $IM_CONFIG_XINPUTRC\""
     IM_CONFIG_SELECT=$(eval $IM_CONFIG_MENULIST)
 
     if [ -z "$IM_CONFIG_SELECT" ]; then
