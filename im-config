@@ -19,11 +19,9 @@ fi
 # Call real im-config UI
 #############################################################
 if [ "x$DISPLAY" = "x" ]; then
-    /usr/bin/im-config.console
-elif [ -f /usr/bin/zenity ]; then
-    . /usr/bin/im-config.gtk
+    . /usr/bin/im-config.console
 else
-    x-terminal-emulator -e /usr/bin/im-config.console
+    . /usr/bin/im-config.gtk
 fi
 
 
