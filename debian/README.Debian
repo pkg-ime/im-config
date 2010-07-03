@@ -84,7 +84,7 @@ Please file your bug report with the reportbug program against im-config
 package.
 
 =======================================================================
-!	How im-config works!
+!	How im-config works
 =======================================================================
 
 * X start-up codes
@@ -147,9 +147,12 @@ as follows:
 90-99: For internal program use
 
 These configuration files are POSIX shell script.  Please avoid using BASH
-features.  When these files are sourced by the hook script
-/etc/X11/Xsesion.d/80im-config_launch , it also exports 3 key variables:
-"$XMODIFIERS", "$GTK_IM_MODULE", and "$QT_IM_MODULE".
+features.  When these *.im files are sourced by the hook script
+/etc/X11/Xsesion.d/80im-config_launch.  It uses run_im function in which
+*.im are sourced if "$XMODIFIERS", "$GTK_IM_MODULE", and "$QT_IM_MODULE"
+are not set before this script execution.  After sourcing the *.im, 
+run_im function also exports "$XMODIFIERS", "$GTK_IM_MODULE", and 
+"$QT_IM_MODULE"
 
 Some sanity check are implemented when you use im-config.  For example, when a
 user makes changes to these configuration files without using im-config,
@@ -157,11 +160,21 @@ im-config will detect it using a md5sum hush embedded in the comment and will
 not change its content.  In order to overwrite such modified configuration
 files by im-config, you have to erase them first.
 
+=======================================================================
+!	Custom configuration
+=======================================================================
+
 If you wish to create some custom configuration beyond what the im-config
 can do, you can do so by placing your custom input method configuration in
 HOME/.xinputrc or /etc/X11/xinit/xinputrc.  When you do this, *.im files
 in /usr/share/im-config/data should give you good idea how these can be
-done.  cjkv.im tells how input method can be customized for each locale. 
+done.  cjkv.im tells how input method can be customized for each locale.
+You must add following at the end of this custom configuration.
+---
+export XMODIFIERS
+export GTK_IM_MODULE
+export QT_IM_MODULE
+---
 
 If you are interested to add a new input method support, please send me a start
 up code as *.im and its matching *.dsc files for /usr/share/im-config/data. 
