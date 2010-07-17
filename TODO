@@ -3,5 +3,6 @@ Action items
 * more input method supports
  - Old style XMODIFIERS settings (as 80_*)
  - IMMODULE only methos support  (as 80_*)
+ (You must add valid IM_CONFIG_KEY for these)
 
 * migration from im-switch

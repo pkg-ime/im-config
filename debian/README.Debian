@@ -135,7 +135,7 @@ configuration file, /etc/X11/xinit/xinputrc, instead.
 The leading numbers for files in /usr/share/im-config/data have special meaning
 as follows:
 
-00-79: These show up as a part of selection menu.
+00-89: These show up as a part of selection menu.
 10-79: The smallest number one which exists on the system is activated by 
        automatic selection such as auto and cjkv.
 
@@ -143,7 +143,7 @@ as follows:
 10-49: Input Method supporting multiple languages.
 50-69: Input Method supporting single or limited languages.
 70-79: No special Input Method (none)
-80-89: Input Method support too old to be included in menu but accessible
+80-89: Input Method support too old to be high in the menu or as default
 90-99: For internal program use
 
 These configuration files are POSIX shell script.  Please avoid using BASH
@@ -182,5 +182,4 @@ up code as *.im and its matching *.dsc files for /usr/share/im-config/data.
   IM_CONFIG_DSC : Description used in the im-config dialogue.
   IM_CONFIG_KEY : Prerequisite file name for the particular input method.
 
- -- Osamu Aoki <osamu@debian.org>,  Tue, 22 Jun 2010 22:53:42 +0900
-
+ -- Osamu Aoki <osamu@debian.org>,  Sat, 17 Jul 2010 21:06:16 +0900

@@ -20,8 +20,8 @@ if [ "$IM_CONFIG_ACTIVE" = "custom" ]; then
     dialog --infobox  "${IM_CONFIG_MESSAGE}\n\n$IM_CONFIG_DOC" 15 76
 else
     IM_CONFIG_MENULIST="dialog --radiolist \"Input Method Configuration (im-config, ver. $IM_CONFIG_VERSION)\n\nSelect $IM_CONFIG_XINPUTRC_DSC for Input Method. User configuration supercedes system one.\" 23 76 18"
-    # Make selection menu list (00-79 only)
-    for x in $IM_CONFIG_DATA/[01234567]?_*.im ; do
+    # Make selection menu list (00-89 only)
+    for x in $IM_CONFIG_DATA/[012345678]?_*.im ; do
         y=$(name_im $x)
         if [ $y = $IM_CONFIG_ACTIVE ]; then
             if check_avail_im $y ; then

@@ -20,8 +20,8 @@ if [ "$IM_CONFIG_ACTIVE" = "custom" ]; then
     zenity --info --text "${IM_CONFIG_MESSAGE}\n\n$IM_CONFIG_DOC"
 else
     IM_CONFIG_MENULIST="zenity --title=\"Input Method Configuration (im-config, ver. $IM_CONFIG_VERSION)\" --width=600 --height=400 --text=\"Select $IM_CONFIG_XINPUTRC_DSC for Input Method. User configuration supercedes system one.\" --list --radiolist --column select --column name --column \"Description of Input Method Configuration\""
-    # Make selection menu list (00-79 only)
-    for x in $IM_CONFIG_DATA/[01234567]?_*.im ; do
+    # Make selection menu list (00-89 only)
+    for x in $IM_CONFIG_DATA/[012345678]?_*.im ; do
         y=$(name_im $x)
         if [ $y = $IM_CONFIG_ACTIVE ]; then
             if check_avail_im $y ; then

@@ -1,3 +1,11 @@
+im-config (0.3) unstable; urgency=low
+
+  * Added skim support.
+  * Enabled menu if corresponding package is installed even for low
+    priority entries.
+
+ -- Osamu Aoki <osamu@debian.org>  Sat, 17 Jul 2010 21:14:32 +0900
+
 im-config (0.2) unstable; urgency=low
 
   * Set menu entry to be NoDisplay.
