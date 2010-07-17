@@ -1,4 +1,4 @@
-# start IBus
+# start uim
 # vim: set sts=4 expandtab:
 
 # start uim-xim daemon
@@ -16,17 +16,19 @@ elif [ -x /usr/bin/uim-toolbar-qt]; then
     (sleep 10; uim-toolbar-qt) &
 fi
 
+GTK_IM_MODULE=xim
 # use immodule when available for GTK
-if [ -e /usr/lib/gtk-2.0/*/immodules/im-uim.so ]; then
-    GTK_IM_MODULE=uim
-else
-    GTK_IM_MODULE=xim
-fi
+for IM_CONFIG_MARKER in /usr/lib/gtk-2.0/*/immodules/im-uim.so ; do
+    if [ -e $IM_CONFIG_MARKER ]; then
+        GTK_IM_MODULE=uim
+    fi
+done
 
+QT_IM_MODULE=xim
 # use immodule when available for QT
-if [ -e /usr/lib/qt4/plugins/inputmethods/libuiminputcontextplugin.so] ||\
-   [ -e /usr/lib/qt3/plugins/inputmethods/libquiminputcontextplugin.so ]; then
-    QT_IM_MODULE=uim
-else
-    QT_IM_MODULE=xim
-fi
+for IM_CONFIG_MARKER in /usr/lib/qt4/plugins/inputmethods/libuiminputcontextplugin.so /usr/lib/qt3/plugins/inputmethods/libquiminputcontextplugin.so ; do
+    if [ -e $IM_CONFIG_MARKER ]; then
+        QT_IM_MODULE=uim
+    fi
+done
+

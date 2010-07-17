@@ -7,17 +7,19 @@
 # set variables for the plain XIM
 XMODIFIERS=@im=ibus
 
+GTK_IM_MODULE=xim
 # use immodule when available for GTK
-if [ -e /usr/lib/gtk-2.0/*/immodules/im-ibus.so ]; then
-    GTK_IM_MODULE=ibus
-else
-    GTK_IM_MODULE=xim
-fi
+for IM_CONFIG_MARKER in /usr/lib/gtk-2.0/*/immodules/im-ibus.so ; do
+    if [ -e $IM_CONFIG_MARKER ]; then
+        GTK_IM_MODULE=ibus
+    fi
+done
 
+QT_IM_MODULE=xim
 # use immodule when available for QT
-if [ -e /usr/lib/qt4/plugins/inputmethods/libqtim-ibus.so ]; then
-    QT_IM_MODULE=ibus
-else
-    QT_IM_MODULE=xim
-fi
+for IM_CONFIG_MARKER in /usr/lib/qt4/plugins/inputmethods/libqtim-ibus.so ; do
+    if [ -e $IM_CONFIG_MARKER ]; then
+        QT_IM_MODULE=ibus
+    fi
+done
 

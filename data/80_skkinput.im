@@ -1,7 +1,7 @@
-# start IBus
+# start skkinput
 # vim: set sts=4 expandtab:
 
-# start fcitx daemon
+# start skkinput daemon
 /usr/bin/skkinput &
 
 # set variables for the plain XIM

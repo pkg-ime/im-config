@@ -1,4 +1,4 @@
-# start IBus
+# start SCIM
 # vim: set sts=4 expandtab:
 
 # start SCIM daemon
@@ -7,21 +7,32 @@
 # set variables for the plain XIM
 XMODIFIERS=@im=SCIM
 
+GTK_IM_MODULE=xim
 # use immodule when available for GTK
-if [ -e /usr/lib/gtk-2.0/*/immodules/im-scim-bridge.so ]; then
-    GTK_IM_MODULE=scim-bridge
-elif [ -e /usr/lib/gtk-2.0/*/immodules/im-scim.so ]; then
-    GTK_IM_MODULE=scim
-else
-    GTK_IM_MODULE=xim
-fi
+for IM_CONFIG_MARKER in /usr/lib/gtk-2.0/*/immodules/im-scim.so ; do
+    if [ -e $IM_CONFIG_MARKER ]; then
+        GTK_IM_MODULE=scim
+    fi
+done
+# use scim-bridge when available for GTK
+for IM_CONFIG_MARKER in /usr/lib/gtk-2.0/*/immodules/im-scim-bridge.so ; do
+    if [ -e $IM_CONFIG_MARKER ]; then
+        GTK_IM_MODULE=scim-bridge
+    fi
+done
 
+QT_IM_MODULE=xim
 # use immodule when available for QT
-if [ -e /usr/lib/qt4/plugins/inputmethods/im-scim-bridge.so ] ||\
-   [ -e /usr/lib/qt3/plugins/inputmethods/im-scim-bridge.so ]; then
-    QT_IM_MODULE=scim-bridge
-elif [ -e /usr/lib/qt3/plugins/inputmethods/libqscim.so ]; then
-    QT_IM_MODULE=scim
-else
-    QT_IM_MODULE=xim
-fi
+for IM_CONFIG_MARKER in /usr/lib/qt3/plugins/inputmethods/libqscim.so ; do
+    if [ -e $IM_CONFIG_MARKER ]; then
+        QT_IM_MODULE=scim
+    fi
+done
+# use im-scim-bridge when available for QT
+for IM_CONFIG_MARKER in /usr/lib/qt*/plugins/inputmethods/im-scim-bridge.so ; do
+    if [ -e $IM_CONFIG_MARKER ]; then
+        QT_IM_MODULE=scim-bridge
+    fi
+done
+
+
