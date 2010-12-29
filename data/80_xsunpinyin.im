@@ -1,0 +1,11 @@
+# start xsunpinyin 
+# vim: set sts=4 expandtab:
+
+# start xsunpinyin daemon
+/usr/bin/xsunpinyin -d
+
+# set variables for the plain XIM
+XMODIFIERS=@im=xsunpinyin
+GTK_IM_MODULE=xim
+QT_IM_MODULE=xim
+
