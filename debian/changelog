@@ -3,8 +3,9 @@ im-config (0.4) unstable; urgency=low
   * Added xsunpinyin support by Zhengpeng Hou.
   * Adjusted gcin priority in line with README.Debian.
   * Lowered skim priority since it will not be supported under KDE4.
+  * Fixed package removal side effects. Closes: #618021 
 
- -- Osamu Aoki <osamu@debian.org>  Wed, 29 Dec 2010 21:10:08 +0900
+ -- Osamu Aoki <osamu@debian.org>  Mon, 14 Mar 2011 22:58:05 +0900
 
 im-config (0.3) unstable; urgency=low
 

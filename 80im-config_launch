@@ -8,7 +8,8 @@
 # If already tweaked, keep hands off :-)
 if [ -z "$XMODIFIERS" ] && \
    [ -z "$GTK_IM_MODULE" ] && \
-   [ -z "$QT_IM_MODULE" ]; then
+   [ -z "$QT_IM_MODULE" ] && \
+   [ -r /usr/share/im-config/xinputrc.common ]; then
     # initialize all im-config common functions and parameters
     . /usr/share/im-config/xinputrc.common
     # source the first found configuration file
