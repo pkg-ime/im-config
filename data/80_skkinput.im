@@ -8,4 +8,4 @@
 XMODIFIERS=@im=skkinput
 GTK_IM_MODULE=xim
 QT_IM_MODULE=xim
-
+CLUTTER_IM_MODULE=xim

@@ -8,17 +8,50 @@
 XMODIFIERS=@im=gcin
 
 GTK_IM_MODULE=xim
-# use immodule when available for GTK
-for IM_CONFIG_MARKER in /usr/lib/gtk-2.0/*/immodules/gcin.so ; do
+# use scim immodule only when available for both GTK 2.0 and 3.0
+IM_CONFIG_MARKER2=0
+for IM_CONFIG_MARKER in /usr/lib/*/gtk-2.0/*/immodules/gcin.so \
+                        /usr/lib/gtk-2.0/*/immodules/gcin.so ; do
     if [ -e $IM_CONFIG_MARKER ]; then
-        GTK_IM_MODULE=gcin
+        IM_CONFIG_MARKER2=1
+        break
     fi
 done
 
-QT_IM_MODULE=xim
-# use immodule when available for QT
-for IM_CONFIG_MARKER in /usr/lib/qt3/plugins/inputmethods/libqgcin.so /usr/lib/qt4/plugins/inputmethods/im-gcin.so ; do
+# There is no gtk3 module for SCIM for wheezy at this moment.
+# This ensures to use xim for wheezy unless this is fixed.
+IM_CONFIG_MARKER3=0
+for IM_CONFIG_MARKER in /usr/lib/*/gtk-3.0/*/immodules/gcin.so \
+                        /usr/lib/gtk-3.0/*/immodules/gcin.so ; do
     if [ -e $IM_CONFIG_MARKER ]; then
-        GTK_IM_MODULE=gcin
+        IM_CONFIG_MARKER3=1
+        break
     fi
 done
+if [ $IM_CONFIG_MARKER2 = 1 ] && [ $IM_CONFIG_MARKER3 = 1 ] ; then
+    GTK_IM_MODULE=gcin
+fi
+
+QT_IM_MODULE=xim
+# use immodule when available for Qt3
+for IM_CONFIG_MARKER in /usr/lib/*/qt3/plugins/inputmethods/libqgcin.so \
+                        /usr/lib/qt3/plugins/inputmethods/libqgcin.so ; do
+    if [ -e $IM_CONFIG_MARKER ]; then
+        QT_IM_MODULE=gcin
+        break
+    fi
+done
+
+# This is placeholder for now.
+QT4_IM_MODULE=xim
+# use immodule when available for Qt4
+for IM_CONFIG_MARKER in /usr/lib/*/qt4/plugins/inputmethods/libqgcin.so \
+                        /usr/lib/qt4/plugins/inputmethods/libqgcin.so ; do
+    if [ -e $IM_CONFIG_MARKER ]; then
+        QT4_IM_MODULE=gcin
+        break
+    fi
+done
+
+# scim has no clutter support
+CLUTTER_IM_MODULE=xim

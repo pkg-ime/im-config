@@ -11,6 +11,7 @@
 # GTK UI for im-config
 #############################################################
 IM_CONFIG_ACTIVE=$(active_im)
+IM_CONFIG_AUTOMATIC=$(automatic_im)
 
 IM_CONFIG_RESTART="Restart the X session to activate the new Imput Method configuration."
 IM_CONFIG_DOC="Please read /usr/share/doc/im-config/README.Debian.gz for details."

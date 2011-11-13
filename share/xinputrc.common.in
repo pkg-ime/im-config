@@ -54,6 +54,8 @@ run_im () {
         export XMODIFIERS
         export GTK_IM_MODULE
         export QT_IM_MODULE
+        export QT4_IM_MODULE
+        export CLUTTER_IM_MODULE
         echo "script for $1 started." >&2
     else
         echo "ERROR: script for $1 not found." >&2

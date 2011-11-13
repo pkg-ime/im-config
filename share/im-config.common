@@ -36,6 +36,19 @@ active_im () {
     fi
 }
 
+# automatic_im
+automatic_im () {
+    for IM_DSC in $IM_CONFIG_DATA/[12345678]?_*.dsc ; do
+        . $IM_DSC
+        if [ -r $IM_CONFIG_KEY ]; then
+            IM_DSC=${IM_DSC#$IM_CONFIG_DATA/??_}
+            IM_DSC=${IM_DSC%.dsc}
+            echo "$IM_DSC"
+            break
+        fi  
+    done
+}   
+
 # dsc_im <config>
 dsc_im () {
     if [ -r $IM_CONFIG_DATA/??_$1.dsc ] ; then
@@ -43,7 +56,11 @@ dsc_im () {
         {
             # subshell
             . $IM_CONFIG_DATA/??_$1.dsc
-            echo $IM_CONFIG_DSC
+            if [ "x$IM_CONFIG_AUTOMATIC" = "x$1" ]; then
+                echo "$IM_CONFIG_DSC @"
+            else
+                echo "$IM_CONFIG_DSC"
+            fi
         }
     else
         echo "ERROR: description for $1 not found." >&2

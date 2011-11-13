@@ -9,6 +9,8 @@
 if [ -z "$XMODIFIERS" ] && \
    [ -z "$GTK_IM_MODULE" ] && \
    [ -z "$QT_IM_MODULE" ] && \
+   [ -z "$QT4_IM_MODULE" ] && \
+   [ -z "$CLUTTER_IM_MODULE" ] && \
    [ -r /usr/share/im-config/xinputrc.common ]; then
     # initialize all im-config common functions and parameters
     . /usr/share/im-config/xinputrc.common

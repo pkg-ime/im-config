@@ -26,34 +26,55 @@ For user configuration, execute as:
 For system wide default, execute as:
   $ sudo im-config
 
-You can enable GUI menu by right-clicking menu under GNOME -> "Edit Menu" and
-check menu entry to be activated.  Then you can use this GUI menu for user
-configuration as "System" -> "Preferences" -> "Input Method" which runs
-"im-config".
+Under GNOME2, you can do the same by enabling GUI menu by right-clicking menu
+under GNOME -> "Edit Menu" and check menu entry to be activated.  Then you can
+use this GUI menu for user configuration as 
+"System" -> "Preferences" -> "Input Method" which runs "im-config". 
+(Under current GNOME3 in testing, this does not work.)
 
 =========================================================================
 !	Quick Guide to Setup Input Method
 =========================================================================
 
-* IBus (under GNOME)
+* IBus (GTK+2, GTK+3, Qt4, Clutter, EMACS) -- this is most versatile
   - Install all useful IBus packages (use "l" under aptitude to find them.)
-    ibus, ibus-anthy (Japanese), ibus-gtk, ...
-  - "System" -> "Preferences" -> "Input Method" and select 
-    "Intelligent Input Bus (IBus) input method"
-  - "System" -> "Preferences" -> "IBus Preferences" -> "Input Method" -> 
-    "Select an input method" -> "Japanese" -> "Anthy" and click "Add". 
-  - Relogin to user account to refresh X session.
+    - Core ibus input package:                ibus
+    - Support package for each UI environment
+      - GTK+2 IM module:                      ibus-gtk
+      - GTK+3 IM module:                      ibus-gtk3
+      - Qt4 IM module:                        ibus-qt4
+      - Clutter IM module:                    ibus-clutter
+      - EMACS (optional optimization):        ibus-el
+      [Note]
+        These are optional.  (Otherwise, xim is used)
+        Installing them will improve user experience.
+        Both ibus-gtk and ibus-gtk3 are required to be installed to activate 
+        GTK IM module with im-config.
+    - Support package for each IM engine client
+      - Japanese, MOZC (best):                ibus-mozc
+      - Japanese, Anthy (good):               ibus-anthy
+      - Japanese, SKK (EMACS style):          ibus-skk
+      - Korean language:                      ibus-hangul
+      - Traditional Chinese:                  ibus-chewing
+      - Simplified Chinese:                   ibus-pinyin
+      - Simplified Chinese (SUN):             ibus-sunpinyin
+      - Simplified Chinese (Google):          ibus-googlepinyin
+      - Vietnamese:                           ibus-unikey
+      - Many table based input method:        ibus-table*
+  - If other input method packages (fcitx, uim, ...) are installed,
+    select ibus by executing im-config from a terminal window.
+    (Usually not needed since this is default.)
+  - Configure ibus by adding your desired input method engine.
+    This configuration may be accessed by right clicking small keyboard icon
+    on the top right corner.  For example, I would chose MOZC for Japanese.
+  - Relogin to the user account to refresh X session.
 
-* SCIM (under GNOME)
-  - Install all useful scim packages (use "l" under aptitude to find them.)
-    scim, scim-anthy (Japanese), ...
-  - "System" -> "Preferences" -> "Input Method" and select 
-    "Smart Common Input Method (SCIM)"
-  - Relogin to user account to refresh X session.
+* fcitx (GTK+2, GTK+3, Qt4) -- mostly for Chinese
+  [TODO -- Add tutorial] This is new and very active tool chain.
 
-* uim (under GNOME)
+* uim (GTK+2, GTK+3, Qt4) -- mostly for Japanese
   - Install all useful uim packages (use "l" under aptitude to find them.)
-    uim, uim-anthy (Japanese), uim-gtk2.0, ...
+    uim, uim-anthy (Japanese), uim-gtk2.0, uim-gtk3, uim-qt, uim-xim
   - "System" -> "Preferences" -> "Input Method" and select
     "universal input method (uim)"
     This will enable first found status display dialogue from the following.
@@ -64,6 +85,13 @@ configuration as "System" -> "Preferences" -> "Input Method" which runs
 
   FYI: (With the method written in uim package, you can use toolbar under 
         non-gnome environment)
+
+* SCIM -- deprecated for wheezy, use ibus instead.
+  - Install all useful scim packages (use "l" under aptitude to find them.)
+    scim, scim-anthy (Japanese), ...
+  - "System" -> "Preferences" -> "Input Method" and select 
+    "Smart Common Input Method (SCIM)"
+  - Relogin to user account to refresh X session.
 
 * Disable Input Method.
   - select it from menu in the im-config command.
@@ -174,6 +202,8 @@ You must add following at the end of this custom configuration.
 export XMODIFIERS
 export GTK_IM_MODULE
 export QT_IM_MODULE
+export QT4_IM_MODULE
+export CLUTTER_IM_MODULE
 ---
 
 If you are interested to add a new input method support, please send me a start

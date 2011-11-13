@@ -17,18 +17,47 @@ elif [ -x /usr/bin/uim-toolbar-qt]; then
 fi
 
 GTK_IM_MODULE=xim
-# use immodule when available for GTK
-for IM_CONFIG_MARKER in /usr/lib/gtk-2.0/*/immodules/im-uim.so ; do
+# use immodule only when available for both GTK 2.0 and 3.0
+IM_CONFIG_MARKER2=0
+for IM_CONFIG_MARKER in /usr/lib/*/gtk-2.0/*/immodules/im-uim.so \
+                        /usr/lib/gtk-2.0/*/immodules/im-uim.so ; do
     if [ -e $IM_CONFIG_MARKER ]; then
-        GTK_IM_MODULE=uim
+        IM_CONFIG_MARKER2=1
+        break
     fi
 done
 
-QT_IM_MODULE=xim
-# use immodule when available for QT
-for IM_CONFIG_MARKER in /usr/lib/qt4/plugins/inputmethods/libuiminputcontextplugin.so /usr/lib/qt3/plugins/inputmethods/libquiminputcontextplugin.so ; do
+IM_CONFIG_MARKER3=0
+for IM_CONFIG_MARKER in /usr/lib/*/gtk-3.0/*/immodules/im-uim.so \
+                        /usr/lib/gtk-3.0/*/immodules/im-uim.so ; do
     if [ -e $IM_CONFIG_MARKER ]; then
-        QT_IM_MODULE=uim
+        IM_CONFIG_MARKER3=1
+        break
     fi
 done
+if [ $IM_CONFIG_MARKER2 = 1 ] && [ $IM_CONFIG_MARKER3 = 1 ] ; then
+    GTK_IM_MODULE=uim
+fi
+
+QT_IM_MODULE=xim
+# use immodule when available for Qt3
+for IM_CONFIG_MARKER in /usr/lib/*/qt3/plugins/inputmethods/libquiminputcontextplugin.so \
+                        /usr/lib/qt3/plugins/inputmethods/libquiminputcontextplugin.so ; do
+    if [ -e $IM_CONFIG_MARKER ]; then
+        QT_IM_MODULE=uim
+        break
+    fi
+done
+
+QT4_IM_MODULE=xim
+# use immodule when available for Qt4 (Qt3 has been long dead)
+for IM_CONFIG_MARKER in /usr/lib/*/qt4/plugins/inputmethods/libuiminputcontextplugin.so \
+                        /usr/lib/qt4/plugins/inputmethods/libuiminputcontextplugin.so ; do
+    if [ -e $IM_CONFIG_MARKER ]; then
+        QT4_IM_MODULE=uim
+        break
+    fi
+done
+
+CLUTTER_IM_MODULE=xim
 
