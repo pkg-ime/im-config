@@ -12,4 +12,8 @@ elif [ -x /usr/bin/kinput2-canna-wnn ]; then
     # Alternatively, you can cusomize this as:
     # /usr/bin/kinput2-canna-wnn -wnn -xim &
 fi
+XMODIFIERS=@im=kinput2
+GTK_IM_MODULE=xim
+QT_IM_MODULE=xim
+CLUTTER_IM_MODULE=xim
 

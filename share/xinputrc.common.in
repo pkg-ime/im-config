@@ -24,7 +24,10 @@ fi
 check_avail_im () {
     if [ -r $IM_CONFIG_DATA/[012345678]?_$1.dsc ]; then
         . $IM_CONFIG_DATA/[012345678]?_$1.dsc
-        if [ -r $IM_CONFIG_KEY ]; then
+        if [ "x$IM_CONFIG_KEY" = "x" ] || \
+           [ "x$IM_CONFIG_KEY" = "xnone" ]; then
+            true
+        elif [ -r $IM_CONFIG_KEY ]; then
             true
         else
             false
