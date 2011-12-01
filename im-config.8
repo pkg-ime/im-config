@@ -5,11 +5,16 @@
 im\-config \- set up input method configuration for X Window System
 .SH SYNOPSIS
 .TP
-.B im\-config
-.TP
-.B im\-config.gtk
-.TP
-.B im\-config.console
+.B im\-config [OPTION]
+
+.SH OPTIONS
+.TP 8
+.B -a
+Force to list all possible input methods in menu even if their packages are not installed.
+.TP 8
+.B -c
+Force to use console dialogue.
+
 .SH "DESCRIPTION"
 This manual page very briefly documents the
 .B im\-config
@@ -18,11 +23,11 @@ command.
 The
 .B im\-config 
 command provides the framework to configure the input 
-method on X Window System. This input method 
+method on X Window System with GTK GUI or with console dialogue. This input method 
 is the essential mechanism for Japanese, Chinese and Korean (CJK) 
 languages to enter their non-ASCII native characters.
 .PP
-Some input methods such as IBus, SCIM, and uim support not only one of these CJK languages 
+Some input methods such as IBus, fcitx, and uim support not only one of these CJK languages 
 but support almost all languages simultaneously by dynamically switching 
 keyboard modes with GUI.
 .PP
@@ -30,6 +35,13 @@ Configuration files for all input methods are located in
 .B /usr/share/im-config/config
 Each file name start with 2 digits number and the smallest one has priority.
 The highest priority input method is used under auto configuration mode.
+Files with 
+.I .im
+extension are the start up code for input methods.  Files with 
+.I .dsc
+extension are used to set configuration parameters for the 
+.B im\-config
+program.  These are POSIX shell code.
 .PP
 The X start up code sources
 .B /etc/X11/Xsession.d/80im-config_launch
@@ -40,17 +52,11 @@ exists, it is used.  Otherwise the system configuration file
 .B /etc/X11/xinit/xinputrc
 is used.
 .PP
-This structure ensures to have different imput methods to be installed side-by-side.
+This structure ensures to have different input methods to be installed side-by-side.
 .PP
-.B im\-config
-takes no options and use available UI.
-.B im\-config.gtk
-uses GTK UI.
-.B im\-config.console
-uses console dialog UI.
 
 .SH "SEE ALSO"
-.BR /usr/share/doc/im\-config/README.Debian
+.BR /usr/share/doc/im\-config/README.Debian.gz
 .SH AUTHOR
 This manual page was written by Osamu Aoki <osamu@debian.org>,
 for the Debian GNU/Linux system (but may be used by others).

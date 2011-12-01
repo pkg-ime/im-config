@@ -6,6 +6,7 @@
 # Input Method for X, GNOME, KDE, ... see im-config(8).
 
 # If already tweaked, keep hands off :-)
+# If im-config is removed but not purged, keep hands off :-)
 if [ -z "$XMODIFIERS" ] && \
    [ -z "$GTK_IM_MODULE" ] && \
    [ -z "$QT_IM_MODULE" ] && \
@@ -20,5 +21,11 @@ if [ -z "$XMODIFIERS" ] && \
     elif [ -r "$IM_CONFIG_XINPUTRC_SYS" ]; then
         . $IM_CONFIG_XINPUTRC_SYS
     fi
+    # always export variables even for manual configuration.
+    export XMODIFIERS
+    export GTK_IM_MODULE
+    export QT_IM_MODULE
+    export QT4_IM_MODULE
+    export CLUTTER_IM_MODULE
 fi
 

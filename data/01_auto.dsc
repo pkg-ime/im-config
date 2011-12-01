@@ -1,3 +1,8 @@
-IM_CONFIG_DSC="activate IM with @ for all locales"
-IM_CONFIG_KEY="none"
-IM_CONFIG_DEP="Recommend: ibus and ((ibus-gtk and ibus-gtk3) or ibus-qt4 or ibus-clutter)"
+# vim: set sts=4 expandtab:
+IM_CONFIG_DSC="activate IM with @-mark for all locales"
+
+IM_CONFIG_DOC="$IM_CONFIG_RTFM"
+
+package_menu () {
+:
+}

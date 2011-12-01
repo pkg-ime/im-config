@@ -7,4 +7,5 @@ IM_CONFIG_DEFAULT_MODE=auto
 
 # Trace commands for debug
 # (This may cause problem configuration file generated under console mode)
-#set -x
+#IM_CONFIG_SETMODE="-x"
+

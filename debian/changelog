@@ -2,9 +2,10 @@ im-config (0.6) unstable; urgency=low
 
   * Added lib-thai and imhangul support. Closes: #650244
   * Added support for $IM_CONFIG_KEY="none".
+  * Refactored UI code and added automatic variable export support. 
   * Updated README.Debian.
 
- -- Osamu Aoki <osamu@debian.org>  Wed, 30 Nov 2011 22:23:32 +0900
+ -- Osamu Aoki <osamu@debian.org>  Thu, 01 Dec 2011 23:24:18 +0900
 
 im-config (0.5) unstable; urgency=low
 

@@ -1,29 +1,114 @@
-#!/bin/sh
+#!/bin/bash
 # Input Method configuration
 # (C) Osamu Aoki <osamu@debian.org>, GPL-2+
 # vim: set sts=4 expandtab:
 #############################################################
-# Common variabless and functions
+# Common configuration functions and pre-defined variables
+# used by this im-config and its hook script.
 #############################################################
-. /usr/share/im-config/im-config.common
-# if -d
-if [ "$1" = "-d" ]; then
-    # debug mode :-)
-    set -x
-elif [ -n "$1" ]; then
-    echo "Input Method Configuration (im-config: ver. $IM_CONFIG_VERSION)" >&2
-    echo "(c) Osamu Aoki <osamu@debian.org, GPL-2+" >&2
-    echo "See im-config(8), /usr/share/doc/im-config/README.Debian.gz." >&2
-fi
+. /usr/share/im-config/xinputrc.common
 #############################################################
-# Call real im-config UI
+# Set configuration type variables
 #############################################################
-if [ "x$DISPLAY" = "x" ]; then
-    . /usr/bin/im-config.console
+if [ $(id -u) = 0 ]; then
+    IM_CONFIG_XINPUTRC=$IM_CONFIG_XINPUTRC_SYS
+    IM_CONFIG_XINPUTRC_DSC="system configuration"
 else
-    . /usr/bin/im-config.gtk
+    IM_CONFIG_XINPUTRC=$IM_CONFIG_XINPUTRC_USR
+    IM_CONFIG_XINPUTRC_DSC="user configuration"
+fi
+# configure even if required packages are not available
+IM_CONFIG_ALL=false
+#############################################################
+# Perse command line arguments
+#############################################################
+IM_CONFIG_SETMODE="${IM_CONFIG_SETMODE:-+x}"
+set $IM_CONFIG_SETMODE
+while [ -n "$1" ]; do
+    case $1 in
+    -d)
+        # debug trace mode :-) undocumented.
+        IM_CONFIG_SETMODE="-x"
+        set $IM_CONFIG_SETMODE
+        ;;
+    -a)
+        IM_CONFIG_ALL=true
+        ;;
+    -c)
+        unset DISPLAY
+        ;;
+    *)
+        echo -n "Input Method Configuration (im-config: ver. $IM_CONFIG_VERSION)" >&2
+        echo  >&2
+        echo -n "(c) Osamu Aoki <osamu@debian.org>, GPL-2+" >&2
+        echo  >&2
+        echo -n "See im-config(8), /usr/share/doc/im-config/README.Debian.gz." >&2
+        echo  >&2
+        exit
+        ;;
+    esac
+    shift
+done
+#############################################################
+# Define variables and functions for im-config
+#############################################################
+IM_CONFIG_AUTOMATIC=$(automatic_im)
+. /usr/share/im-config/im-config.common
+IM_CONFIG_ACTIVE=$(active_im)
+IM_CONFIG_ACTIVE_DSC=$(dsc_im $IM_CONFIG_ACTIVE)
+#############################################################
+# UI dialogue for im-config
+#############################################################
+# This is used everywhere
+IM_CONFIG_RTFM="Restart the X session to activate the new Imput Method configuration.\n\nPlease read /usr/share/doc/im-config/README.Debian.gz and im-config(8) for more on configuration of input method."
+
+if [ "$IM_CONFIG_ACTIVE" = "custom" ]; then
+    infobox "This file has been modified externally for im-config.\n\n$IM_CONFIG_RTFM"
+    exit
+fi
+IM_CONFIG_MENULIST="$(menulist_init \
+    "Input Method Configuration (im-config, ver. $IM_CONFIG_VERSION)" \
+    "Select $IM_CONFIG_XINPUTRC_DSC for Input Method. User configuration supercedes system one." \
+    "select" \
+    "name" \
+    "Description of Input Method Configuration")"
+
+# Make selection menu list (00-89)
+for IM_CONFIG_X in $IM_CONFIG_DATA/[012345678]?_*.im ; do
+    IM_CONFIG_NAME=$(name_im $IM_CONFIG_X)
+    IM_CONFIG_NAME_DSC="$(dsc_im $IM_CONFIG_NAME)"
+    if avail_menu $IM_CONFIG_NAME || $IM_CONFIG_ALL ; then
+        if [ $IM_CONFIG_NAME = $IM_CONFIG_ACTIVE ]; then
+            IM_CONFIG_MENULIST="$IM_CONFIG_MENULIST $(menulist_add $IM_CONFIG_NAME "$IM_CONFIG_NAME_DSC" on)"
+        else
+            IM_CONFIG_MENULIST="$IM_CONFIG_MENULIST $(menulist_add $IM_CONFIG_NAME "$IM_CONFIG_NAME_DSC" off)"
+        fi
+    fi
+done
+
+IM_CONFIG_NAME_TMP=$(mktemp --tmpdir im-config.XXXXXXXX)
+set +x
+menulist_eval "$IM_CONFIG_MENULIST" 2>$IM_CONFIG_NAME_TMP
+IM_CONFIG_NAME=$(cat $IM_CONFIG_NAME_TMP)
+set $IM_CONFIG_SETMODE
+rm $IM_CONFIG_NAME_TMP
+
+if [ -z "$IM_CONFIG_NAME" ]; then
+    infobox "Keeping the $IM_CONFIG_XINPUTRC_DSC file $IM_CONFIG_XINPUTRC unchanged as $IM_CONFIG_ACTIVE_DSC."
+    exit
 fi
 
+if [ "$IM_CONFIG_NAME" = "REMOVE" ]; then
+    rm -f $IM_CONFIG_XINPUTRC
+    infobox "Removing the $IM_CONFIG_XINPUTRC_DSC file $IM_CONFIG_XINPUTRC.\n\n$IM_CONFIG_RTFM"
+    exit
+fi
 
-
+# update configuration file
+IM_CONFIG_NAME_DSC="$(dsc_im $IM_CONFIG_NAME)"
+IM_CONFIG_NAME_DOC="$(doc_im $IM_CONFIG_NAME)"
+echo "# im-config(8) generated on $(date -R)" > $IM_CONFIG_XINPUTRC
+echo "run_im $IM_CONFIG_NAME" >> $IM_CONFIG_XINPUTRC
+add_md5sum $IM_CONFIG_XINPUTRC
+infobox "Setting the $IM_CONFIG_XINPUTRC_DSC in $IM_CONFIG_XINPUTRC to $IM_CONFIG_NAME_DSC.\n\n$IM_CONFIG_NAME_DOC\n\n$IM_CONFIG_RTFM"
 

@@ -9,27 +9,36 @@ im-config for Debian                     Osamu Aoki <osamu@debian.org>
 
 2. It provides a reasonably simple GUI configuration menu which is off
    by the default.  Menu selected user configuration can override the 
-   system default.
+   system default.  Menu should normally show only available input method
+   on the system.
 
-3. Its configuration files can be manually overridden easily as a POSIX
-   shell hook script.
+3. Its configuration files are intuitive and its contents can be manually 
+   overridden easily as a POSIX shell hook script.
 
-4. Menu system is smart enough to detect such manual configuration. 
+4. Menu configuration system is smart enough to detect manual changes of
+   configuration by editor and honors such changes.
+
+5. POSIX shell script is internationalized via gettext.sh (TODO)
 
 =======================================================================
 !	How To Configure Input Method with im-config
 =======================================================================
 
+If you wish to override system default, 
+
 For user configuration, execute as:
   $ im-config
 
 For system wide default, execute as:
+  $ sudo editor /etc/default/im-config
+or
   $ sudo im-config
 
 Under GNOME2, you can do the same by enabling GUI menu by right-clicking menu
 under GNOME -> "Edit Menu" and check menu entry to be activated.  Then you can
-use this GUI menu for user configuration as 
-"System" -> "Preferences" -> "Input Method" which runs "im-config". 
+use this GUI menu for user configuration as  "System" -> "Preferences" -> 
+"Input Method" which runs "im-config". 
+
 (Under current GNOME3 in testing, this does not work.)
 
 =========================================================================
@@ -93,8 +102,11 @@ use this GUI menu for user configuration as
     "Smart Common Input Method (SCIM)"
   - Relogin to user account to refresh X session.
 
-* Disable Input Method.
-  - select it from menu in the im-config command.
+* Force to disable Input Method.
+  - select "none" from menu in the im-config command.
+
+* REMOVE im-config configuration
+  - select "REMOVE" from menu in the im-config command.
 
 =========================================================================
 !	Trouble Shoot for Input Method
@@ -121,9 +133,10 @@ When X Window System is started, it parses hook script files in
 /etc/X11/Xsesion.d/ directory.  A hook script,
 /etc/X11/Xsesion.d/80im-config_launch, is placed by the im-config package.
 
-If the input method related variables such as "$XMODIFIERS",
-"$GTK_IM_MODULE", and "$QT_IM_MODULE" are set by other program before
-80im-config_launch, 80im-config_launch will skip setting input method.
+If the input method related variables such as "$XMODIFIERS", "$GTK_IM_MODULE",
+"$QT_IM_MODULE", "$QT4_IM_MODULE", and "$CLUTTER_IM_MODULE" are set by other
+program before 80im-config_launch, 80im-config_launch will skip setting input
+method to avoid the conflict with user configurations.
 
 If user's configuration file, $HOME/.xinputrc, exists, this
 80im-config_launch hook script sources user's configuration file.
@@ -142,6 +155,7 @@ set_im default
 
 Here, set_im is shell function provided by this im-config system to source the
 corresponding configuration script 00_default.im in /usr/share/im-config/data.
+
 Since /etc/default/im-config usually defines IM_CONFIG_DEFAULT_MODE=auto, 
 00_default.im sources 01_auto.im to activate the most versatile input method 
 existing on your system.
@@ -163,33 +177,41 @@ configuration file, /etc/X11/xinit/xinputrc, instead.
 The leading numbers for files in /usr/share/im-config/data have special meaning
 as follows:
 
-00-89: These show up as a part of selection menu.
-10-59: The smallest number one which exists on the system is activated by 
-       automatic selection such as auto and cjkv.
-       These *.dsc should have valid $IM_CONFIG_KEY (!= none)
+m   00-09: Input Method choice mode       (default/auto/cjkv/none)
+m A 10-49: Input Method supporting multiple languages.(auto ready)
+m A 50-79: Input Method supporting limited languages. (auto ready)
+m   80-89: Input Method (deprecated, not for auto)
+    90-99: For internal program use
+^ ^
+| |
+| +------  IM configuration in A-marked range is used as the automatic
+|          selection candidates for auto and cjkv mode in this order, 
+|          if package_auto from matching *.dsc returns TRUE.
+|
++--------  IM configuration in m-marked range shows up on menu, 
+           if package_menu from matching *.dsc returns TRUE.
 
-00-09: Automated Input Method choices
-10-49: Input Method, GTK external, supporting multiple languages.
-       im-config maintainer makes call on their priority order.
-50-59: Input Method, GTK external, supporting limited languages.
-60-69: Input Method, GTK internal, supporting limited languages.
-70-79: None
-80-89: Input Method, support too old ones (never meant to be default)
-90-99: For internal program use
+The im-config maintainer decides the assignment of these leading
+numbers.
 
-These configuration files are POSIX shell script.  Please avoid using BASH
-features.  When these *.im files are sourced by the hook script
+These configuration files are POSIX shell script.  Please avoid using
+BASH features.  When these *.im files are sourced by the hook script
 /etc/X11/Xsesion.d/80im-config_launch.  It uses run_im function in which
-*.im are sourced if "$XMODIFIERS", "$GTK_IM_MODULE", "$QT_IM_MODULE",
-"$QT4_IM_MODULE", and "$CLUTTER_IM_MODULE" are not set before this script
-execution.  After sourcing the *.im, run_im function also exports
-"$XMODIFIERS", "$GTK_IM_MODULE", "$QT_IM_MODULE", "$QT4_IM_MODULE", and
+matching *.im are sourced.
+
+After sourcing the *.im, the im-config hook script,
+/etc/X11/Xsession.d/80im-config_launch exports "$XMODIFIERS",
+"$GTK_IM_MODULE", "$QT_IM_MODULE", "$QT4_IM_MODULE", and
 "$CLUTTER_IM_MODULE".
 
-Some sanity check are implemented when you use im-config.  For example, when a
-user makes changes to these configuration files without using im-config,
-im-config will detect it using a md5sum hush embedded in the comment and will
-not change its content.  In order to overwrite such modified configuration
+After configuration, if package_full echo "false" from matching *.dsc,
+a dialogue is displayed for package selection guide.
+
+Some sanity checks are implemented when you use im-config to change
+configuration.  For example, when a user makes changes to these
+configuration files without using im-config, im-config will detect it
+using a md5sum hush value embedded in the shell comment and will not
+change its content.  In order to overwrite such modified configuration
 files by im-config, you have to erase them first.
 
 =======================================================================
@@ -201,21 +223,32 @@ can do, you can do so by placing your custom input method configuration in
 HOME/.xinputrc or /etc/X11/xinit/xinputrc.  When you do this, *.im files
 in /usr/share/im-config/data should give you good idea how these can be
 done.  cjkv.im tells how input method can be customized for each locale.
-You must add following at the end of this custom configuration.
+
+Following variables are automatically exported to X programs by the 
+im-config hook script: /etc/X11/Xsession.d/80im-config_launch
 ---
-export XMODIFIERS
-export GTK_IM_MODULE
-export QT_IM_MODULE
-export QT4_IM_MODULE
-export CLUTTER_IM_MODULE
+ $XMODIFIERS
+ $GTK_IM_MODULE
+ $QT_IM_MODULE
+ $QT4_IM_MODULE
+ $CLUTTER_IM_MODULE
 ---
 
+=======================================================================
+!	New input method support
+=======================================================================
+
 If you are interested to add a new input method support, please send me a start
-up code as *.im and its matching *.dsc files for /usr/share/im-config/data. 
-*.dsc file must contain the following:
-  IM_CONFIG_DSC : Description used in the im-config dialogue.
-  IM_CONFIG_KEY : Prerequisite file name for the particular input method.
-                  Usually, path to the daemon binary providing input method.
-                  Use "none" if there is none is needed as prerequisite.
+up code as *.im and its matching *.dsc for /usr/share/im-config/data. 
+
+*.dsc files contain the definition of following variables and functions:
+Variables:
+  IM_CONFIG_DSC Short description of the im-config configuration.
+  IM_CONFIG_DOC Long description of the im-config configuration.
+Functions:
+  package_menu  return true if enough packages exist for menu listing   00-89
+  package_auto  return true if enough packages exist for auto selection 10-79
+
+Please note these are different from im-switch configuration files.
 
  -- Osamu Aoki <osamu@debian.org>,  Wed, 30 Nov 2011 13:20:48 +0000
