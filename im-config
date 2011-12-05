@@ -12,13 +12,14 @@
 #############################################################
 if [ $(id -u) = 0 ]; then
     IM_CONFIG_XINPUTRC=$IM_CONFIG_XINPUTRC_SYS
-    IM_CONFIG_XINPUTRC_DSC="system configuration"
+    IM_CONFIG_XINPUTRC_TYPE="system configuration"
 else
     IM_CONFIG_XINPUTRC=$IM_CONFIG_XINPUTRC_USR
-    IM_CONFIG_XINPUTRC_DSC="user configuration"
+    IM_CONFIG_XINPUTRC_TYPE="user configuration"
 fi
 # configure even if required packages are not available
 IM_CONFIG_ALL=false
+IM_CONFIG_DRY=""
 #############################################################
 # Perse command line arguments
 #############################################################
@@ -37,9 +38,11 @@ while [ -n "$1" ]; do
     -c)
         unset DISPLAY
         ;;
+    -s)
+        IM_CONFIG_DRY=": "
+        ;;
     *)
         echo -n "Input Method Configuration (im-config: ver. $IM_CONFIG_VERSION)" >&2
-        echo  >&2
         echo -n "(c) Osamu Aoki <osamu@debian.org>, GPL-2+" >&2
         echo  >&2
         echo -n "See im-config(8), /usr/share/doc/im-config/README.Debian.gz." >&2
@@ -55,60 +58,61 @@ done
 IM_CONFIG_AUTOMATIC=$(automatic_im)
 . /usr/share/im-config/im-config.common
 IM_CONFIG_ACTIVE=$(active_im)
-IM_CONFIG_ACTIVE_DSC=$(dsc_im $IM_CONFIG_ACTIVE)
+IM_CONFIG_ACTIVE_SHORT=$(dsc_short $IM_CONFIG_ACTIVE)
 #############################################################
 # UI dialogue for im-config
 #############################################################
 # This is used everywhere
-IM_CONFIG_RTFM="Restart the X session to activate the new Imput Method configuration.\n\nPlease read /usr/share/doc/im-config/README.Debian.gz and im-config(8) for more on configuration of input method."
-
+if [ -z "${IM_CONFIG_DRY}" ]; then
+    IM_CONFIG_RTFM="Restart the X session to activate the new Imput Method configuration.\n\nPlease read im-config(8) and /usr/share/doc/im-config/README.Debian.gz for more on configuration of input method."
+else
+    IM_CONFIG_RTFM="... This is merely a simulated run and no changes has been done.\n\nPlease read im-config(8) and /usr/share/doc/im-config/README.Debian.gz for more on configuration of input method."
+fi
 if [ "$IM_CONFIG_ACTIVE" = "custom" ]; then
     infobox "This file has been modified externally for im-config.\n\n$IM_CONFIG_RTFM"
     exit
 fi
 IM_CONFIG_MENULIST="$(menulist_init \
     "Input Method Configuration (im-config, ver. $IM_CONFIG_VERSION)" \
-    "Select $IM_CONFIG_XINPUTRC_DSC for Input Method. User configuration supercedes system one." \
+    "Select $IM_CONFIG_XINPUTRC_TYPE for Input Method. User configuration supercedes system one." \
     "select" \
     "name" \
     "Description of Input Method Configuration")"
 
 # Make selection menu list (00-89)
-for IM_CONFIG_X in $IM_CONFIG_DATA/[012345678]?_*.im ; do
-    IM_CONFIG_NAME=$(name_im $IM_CONFIG_X)
-    IM_CONFIG_NAME_DSC="$(dsc_im $IM_CONFIG_NAME)"
-    if avail_menu $IM_CONFIG_NAME || $IM_CONFIG_ALL ; then
-        if [ $IM_CONFIG_NAME = $IM_CONFIG_ACTIVE ]; then
-            IM_CONFIG_MENULIST="$IM_CONFIG_MENULIST $(menulist_add $IM_CONFIG_NAME "$IM_CONFIG_NAME_DSC" on)"
+for IM_CONFIG_PATH in $IM_CONFIG_DATA/[012345678]?_*.rc ; do
+    IM_CONFIG_NAME=$(name_im $IM_CONFIG_PATH)
+    IM_CONFIG_NAME_SHORT="$(dsc_short $IM_CONFIG_NAME)"
+    if $IM_CONFIG_ALL || avail_menu $IM_CONFIG_NAME ; then
+        if [ "$IM_CONFIG_NAME" = "$IM_CONFIG_ACTIVE" ]; then
+            IM_CONFIG_MENULIST="$IM_CONFIG_MENULIST $(menulist_add $IM_CONFIG_NAME "$IM_CONFIG_NAME_SHORT" on)"
         else
-            IM_CONFIG_MENULIST="$IM_CONFIG_MENULIST $(menulist_add $IM_CONFIG_NAME "$IM_CONFIG_NAME_DSC" off)"
+            IM_CONFIG_MENULIST="$IM_CONFIG_MENULIST $(menulist_add $IM_CONFIG_NAME "$IM_CONFIG_NAME_SHORT" off)"
         fi
     fi
 done
 
-IM_CONFIG_NAME_TMP=$(mktemp --tmpdir im-config.XXXXXXXX)
+IM_CONFIG_TMPFILE=$(mktemp --tmpdir im-config.XXXXXXXX)
 set +x
-menulist_eval "$IM_CONFIG_MENULIST" 2>$IM_CONFIG_NAME_TMP
-IM_CONFIG_NAME=$(cat $IM_CONFIG_NAME_TMP)
+menulist_eval "$IM_CONFIG_MENULIST" 2>$IM_CONFIG_TMPFILE
+IM_CONFIG_NAME=$(cat $IM_CONFIG_TMPFILE)
 set $IM_CONFIG_SETMODE
-rm $IM_CONFIG_NAME_TMP
+rm $IM_CONFIG_TMPFILE
 
 if [ -z "$IM_CONFIG_NAME" ]; then
-    infobox "Keeping the $IM_CONFIG_XINPUTRC_DSC file $IM_CONFIG_XINPUTRC unchanged as $IM_CONFIG_ACTIVE_DSC."
+    infobox "Keeping the $IM_CONFIG_XINPUTRC_TYPE file $IM_CONFIG_XINPUTRC unchanged as $IM_CONFIG_ACTIVE_SHORT."
     exit
 fi
 
 if [ "$IM_CONFIG_NAME" = "REMOVE" ]; then
-    rm -f $IM_CONFIG_XINPUTRC
-    infobox "Removing the $IM_CONFIG_XINPUTRC_DSC file $IM_CONFIG_XINPUTRC.\n\n$IM_CONFIG_RTFM"
+    ${IM_CONFIG_DRY}rm -f $IM_CONFIG_XINPUTRC
+    infobox "Removing the $IM_CONFIG_XINPUTRC_TYPE file $IM_CONFIG_XINPUTRC.\n\n$IM_CONFIG_RTFM"
     exit
 fi
 
 # update configuration file
-IM_CONFIG_NAME_DSC="$(dsc_im $IM_CONFIG_NAME)"
-IM_CONFIG_NAME_DOC="$(doc_im $IM_CONFIG_NAME)"
-echo "# im-config(8) generated on $(date -R)" > $IM_CONFIG_XINPUTRC
-echo "run_im $IM_CONFIG_NAME" >> $IM_CONFIG_XINPUTRC
-add_md5sum $IM_CONFIG_XINPUTRC
-infobox "Setting the $IM_CONFIG_XINPUTRC_DSC in $IM_CONFIG_XINPUTRC to $IM_CONFIG_NAME_DSC.\n\n$IM_CONFIG_NAME_DOC\n\n$IM_CONFIG_RTFM"
+IM_CONFIG_NAME_SHORT="$(dsc_short $IM_CONFIG_NAME)"
+IM_CONFIG_NAME_LONG="$(dsc_long $IM_CONFIG_NAME)"
+${IM_CONFIG_DRY}write_config $IM_CONFIG_NAME $IM_CONFIG_XINPUTRC
+infobox "Setting the $IM_CONFIG_XINPUTRC_TYPE in $IM_CONFIG_XINPUTRC to $IM_CONFIG_NAME_SHORT.\n\n$IM_CONFIG_NAME_LONG\n\n$IM_CONFIG_RTFM"
 

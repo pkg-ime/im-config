@@ -21,8 +21,8 @@ fi
 # run selected input method script
 # run_im <config>
 run_im () {
-    if [ -r $IM_CONFIG_DATA/[012345678]?_$1.im ]; then
-        . $IM_CONFIG_DATA/[012345678]?_$1.im
+    if [ -r $IM_CONFIG_DATA/[012345678]?_$1.rc ]; then
+        . $IM_CONFIG_DATA/[012345678]?_$1.rc
         echo -n "script for $1 started." >&2
         echo >&2
     else
@@ -52,16 +52,16 @@ package_status () {
 name_im () {
     local x
     x=${1#$IM_CONFIG_DATA/??_}
-    x=${x%.im}
-    x=${x%.dsc}
+    x=${x%.rc}
+    x=${x%.conf}
     echo -n $x
 }
 # avail_auto <config>
 #   configuration availability for auto mode
-#   define package_auto for 10-79*.dsc
+#   define package_auto for 10-79*.conf
 avail_auto () {
-    if [ -r $IM_CONFIG_DATA/??_$1.dsc ]; then
-        . $IM_CONFIG_DATA/??_$1.dsc
+    if [ -r $IM_CONFIG_DATA/??_$1.conf ]; then
+        . $IM_CONFIG_DATA/??_$1.conf
         package_auto 
     else
         echo "E: wrong config name: $1" >&2
@@ -75,7 +75,7 @@ avail_auto () {
 automatic_im () {
 # auto mode uses first available script in 10-79
 # 79 is for "none", i.e., no IM used
-    for IM_CONFIG_SCRIPT_PATH in $IM_CONFIG_DATA/[1234567]*.im ; do
+    for IM_CONFIG_SCRIPT_PATH in $IM_CONFIG_DATA/[1234567]*.rc ; do
         IM_CONFIG_SCRIPT=$(name_im $IM_CONFIG_SCRIPT_PATH)
         if avail_auto $IM_CONFIG_SCRIPT ; then
             echo -n "$IM_CONFIG_SCRIPT"

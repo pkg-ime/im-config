@@ -1,8 +1,7 @@
 Action items
 
-* more input method supports
- - Old style XMODIFIERS settings (as 80_*)
- - IMMODULE only methos support  (as 80_*)
- (You must add valid IM_CONFIG_KEY for these)
+* BTS naga etc.
+* gettext, eval_gettext, gettext.sh
+* xgettext, po4a -> makefile
 
 * migration from im-switch

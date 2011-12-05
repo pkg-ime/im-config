@@ -16,7 +16,7 @@ active_im () {
         IM_CONFIG_ACTIVE_IM=$(sed -n -e 's/^run_im \([^ ]*\) *$/\1/p' < $IM_CONFIG_XINPUTRC)
         if [ -z "$IM_CONFIG_ACTIVE_IM" ]; then
             echo -n "bogus"
-        elif [ -r $IM_CONFIG_DATA/[012345678]?_$IM_CONFIG_ACTIVE_IM.dsc ]; then
+        elif [ -r $IM_CONFIG_DATA/[012345678]?_$IM_CONFIG_ACTIVE_IM.conf ]; then
             echo $IM_CONFIG_ACTIVE_IM
         else
             echo -n "bogus"
@@ -27,18 +27,18 @@ active_im () {
     fi
 }
 
-# dsc_im <config>
+# dsc_short <config>
 #   echo IM configuration short description for IM configuration name
-dsc_im () {
-    if [ -r $IM_CONFIG_DATA/??_$1.dsc ] ; then
+dsc_short () {
+    if [ -r $IM_CONFIG_DATA/??_$1.conf ] ; then
         # use subshell here
         {
             # subshell
-            . $IM_CONFIG_DATA/??_$1.dsc
+            . $IM_CONFIG_DATA/??_$1.conf
             if [ "x$IM_CONFIG_AUTOMATIC" = "x$1" ]; then
-                echo -n "$IM_CONFIG_DSC @"
+                echo -n "$IM_CONFIG_SHORT @"
             else
-                echo -n "$IM_CONFIG_DSC"
+                echo -n "$IM_CONFIG_SHORT"
             fi
         }
     else
@@ -46,15 +46,15 @@ dsc_im () {
     fi
 }
 
-# doc_im <config>
+# dsc_long <config>
 #   echo IM configuration long description for IM configuration name
-doc_im () {
-    if [ -r $IM_CONFIG_DATA/??_$1.dsc ] ; then
+dsc_long () {
+    if [ -r $IM_CONFIG_DATA/??_$1.conf ] ; then
         # use subshell here
         {
             # subshell
-            . $IM_CONFIG_DATA/??_$1.dsc
-            echo -n "$IM_CONFIG_DOC"
+            . $IM_CONFIG_DATA/??_$1.conf
+            echo -n "$IM_CONFIG_LONG"
         }
     else
         echo "ERROR: long description for $1 not found." >&2
@@ -68,8 +68,8 @@ doc_im () {
 #   configuration availability for menu listing
 #   define package_menu for 00-89
 avail_menu () {
-    if [ -r $IM_CONFIG_DATA/??_$1.dsc ]; then
-        . $IM_CONFIG_DATA/??_$1.dsc
+    if [ -r $IM_CONFIG_DATA/??_$1.conf ]; then
+        . $IM_CONFIG_DATA/??_$1.conf
         package_menu
     else
         echo "E: wrong config name: $1" >&2
@@ -81,11 +81,6 @@ avail_menu () {
 #############################################################
 # User modification verification functions used by im-config
 #############################################################
-# add_md5sum <filename>
-add_md5sum () {
-    echo "# im-config signiture: $(md5sum < $1)" >> $1
-}
-
 # check_md5sum <filename>
 check_md5sum () {
     if [ -r "$1" ] && \
@@ -94,6 +89,15 @@ check_md5sum () {
     else
         false
     fi
+}
+# write_config <config name> <file name>
+write_config () {
+    echo -n "# im-config(8) generated on $(date -R)" > $2
+    echo  >> $2
+    echo -n "run_im $1" >> $2
+    echo  >> $2
+    echo -n "# im-config signiture: $(md5sum < $2)" >> $2
+    echo  >> $2
 }
 
 #############################################################
@@ -129,7 +133,7 @@ menulist_init () {
 
 # menulist_add (size fixed)
 # $1 $y
-# $2 \"$(dsc_im $y)\"
+# $2 \"$(dsc_short $y)\"
 # $3 on
 menulist_add () {
     if [ "x$DISPLAY" = "x" ]; then

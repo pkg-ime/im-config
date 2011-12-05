@@ -108,143 +108,18 @@ use this GUI menu for user configuration as  "System" -> "Preferences" ->
 * REMOVE im-config configuration
   - select "REMOVE" from menu in the im-config command.
 
-=========================================================================
-!	Trouble Shoot for Input Method
-=========================================================================
-
-If you have any problem, see the first part of ~/.xsession-errors .
-
-Somehow, relogin may cause unknown errors.  When you check problem with this
-relogin, please check to see the reboot has the same issue.
-
-If you created manually edited /etc/X11/xinit/ or ~/.xinputrc, you need to 
-remove them first to use im-config.  im-config will not overwrite such files.
-
-Please file your bug report with the reportbug program against im-config
-package.
-
-=======================================================================
-!	How im-config works
-=======================================================================
-
-* X start-up codes
-
-When X Window System is started, it parses hook script files in
-/etc/X11/Xsesion.d/ directory.  A hook script,
-/etc/X11/Xsesion.d/80im-config_launch, is placed by the im-config package.
-
-If the input method related variables such as "$XMODIFIERS", "$GTK_IM_MODULE",
-"$QT_IM_MODULE", "$QT4_IM_MODULE", and "$CLUTTER_IM_MODULE" are set by other
-program before 80im-config_launch, 80im-config_launch will skip setting input
-method to avoid the conflict with user configurations.
-
-If user's configuration file, $HOME/.xinputrc, exists, this
-80im-config_launch hook script sources user's configuration file.
-
-Otherwise, this 80im-config_launch hook script sources the system wide
-configuration file, /etc/X11/xinit/xinputrc.
-
-* Configuration command: im-config
-
-The system wide configuration file, /etc/X11/xinit/xinputrc, has
-essentially the following content as installed:
-
-----
-set_im default
-----
-
-Here, set_im is shell function provided by this im-config system to source the
-corresponding configuration script 00_default.im in /usr/share/im-config/data.
-
-Since /etc/default/im-config usually defines IM_CONFIG_DEFAULT_MODE=auto, 
-00_default.im sources 01_auto.im to activate the most versatile input method 
-existing on your system.
-
-When a normal user executes the im-config command, it generates user's
-configuration file.  For example, if you select IBus input method,
-generated user's configuration file, $HOME/.xinputrc, as the following.
-
-----
-set_im ibus
-----
-
-Here, set_im sources the corresponding configuration script 30_ibus.im in
-/usr/share/im-config/data.
-
-When the root executes the im-config command, it updates the system wide
-configuration file, /etc/X11/xinit/xinputrc, instead.
-
-The leading numbers for files in /usr/share/im-config/data have special meaning
-as follows:
-
-m   00-09: Input Method choice mode       (default/auto/cjkv/none)
-m A 10-49: Input Method supporting multiple languages.(auto ready)
-m A 50-79: Input Method supporting limited languages. (auto ready)
-m   80-89: Input Method (deprecated, not for auto)
-    90-99: For internal program use
-^ ^
-| |
-| +------  IM configuration in A-marked range is used as the automatic
-|          selection candidates for auto and cjkv mode in this order, 
-|          if package_auto from matching *.dsc returns TRUE.
-|
-+--------  IM configuration in m-marked range shows up on menu, 
-           if package_menu from matching *.dsc returns TRUE.
-
-The im-config maintainer decides the assignment of these leading
-numbers.
-
-These configuration files are POSIX shell script.  Please avoid using
-BASH features.  When these *.im files are sourced by the hook script
-/etc/X11/Xsesion.d/80im-config_launch.  It uses run_im function in which
-matching *.im are sourced.
-
-After sourcing the *.im, the im-config hook script,
-/etc/X11/Xsession.d/80im-config_launch exports "$XMODIFIERS",
-"$GTK_IM_MODULE", "$QT_IM_MODULE", "$QT4_IM_MODULE", and
-"$CLUTTER_IM_MODULE".
-
-After configuration, if package_full echo "false" from matching *.dsc,
-a dialogue is displayed for package selection guide.
-
-Some sanity checks are implemented when you use im-config to change
-configuration.  For example, when a user makes changes to these
-configuration files without using im-config, im-config will detect it
-using a md5sum hush value embedded in the shell comment and will not
-change its content.  In order to overwrite such modified configuration
-files by im-config, you have to erase them first.
-
-=======================================================================
-!	Custom configuration
-=======================================================================
-
-If you wish to create some custom configuration beyond what the im-config
-can do, you can do so by placing your custom input method configuration in
-HOME/.xinputrc or /etc/X11/xinit/xinputrc.  When you do this, *.im files
-in /usr/share/im-config/data should give you good idea how these can be
-done.  cjkv.im tells how input method can be customized for each locale.
-
-Following variables are automatically exported to X programs by the 
-im-config hook script: /etc/X11/Xsession.d/80im-config_launch
----
- $XMODIFIERS
- $GTK_IM_MODULE
- $QT_IM_MODULE
- $QT4_IM_MODULE
- $CLUTTER_IM_MODULE
----
-
 =======================================================================
 !	New input method support
 =======================================================================
 
-If you are interested to add a new input method support, please send me a start
-up code as *.im and its matching *.dsc for /usr/share/im-config/data. 
+If you are interested to add a new input method support, please send me a
+start up code as *.rc and its matching *.conf for /usr/share/im-config/data by
+reporting to the BTS of the im-config package using reportbug(1).
 
-*.dsc files contain the definition of following variables and functions:
+*.conf files contain the definition of following variables and functions:
 Variables:
-  IM_CONFIG_DSC Short description of the im-config configuration.
-  IM_CONFIG_DOC Long description of the im-config configuration.
+  IM_CONFIG_SHORT Short description of the im-config configuration.
+  IM_CONFIG_LONG Long description of the im-config configuration.
 Functions:
   package_menu  return true if enough packages exist for menu listing   00-89
   package_auto  return true if enough packages exist for auto selection 10-79
