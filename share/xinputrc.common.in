@@ -37,7 +37,7 @@ run_im () {
 # return TRUE if in properly installed
 package_status () {
     PACKAGE_NAME="$1"
-    if [ "$( dpkg-query -l "$PACKAGE_NAME" 2>/dev/null | \
+    if [ "$( LANG=C dpkg-query -l "$PACKAGE_NAME" 2>/dev/null | \
         sed -n '6s/\([^ ]*\) .*$/\1/p' )" = "ii" ]; then
         # return TRUE
         return 0

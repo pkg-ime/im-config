@@ -1,3 +1,10 @@
+im-config (0.7) unstable; urgency=low
+
+  * Updated fcitx description.
+  * Added LANG=C for dpkg-query. Thanks Igor Urazov. Closes: #651646
+
+ -- Osamu Aoki <osamu@debian.org>  Sun, 11 Dec 2011 09:29:43 +0900
+
 im-config (0.6) unstable; urgency=low
 
   * Added lib-thai and imhangul support. Closes: #650244
