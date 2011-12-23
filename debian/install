@@ -6,3 +6,4 @@ im-config.desktop      usr/share/applications
 share/im-config.common usr/share/im-config
 share/xinputrc.common  usr/share/im-config
 data/*                 usr/share/im-config/data
+po/locale/*            usr/share/locale

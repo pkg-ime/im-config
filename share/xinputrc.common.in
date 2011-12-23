@@ -21,12 +21,15 @@ fi
 # run selected input method script
 # run_im <config>
 run_im () {
+    IM_CONFIG_CODE="run_im"
     if [ -r $IM_CONFIG_DATA/[012345678]?_$1.rc ]; then
         . $IM_CONFIG_DATA/[012345678]?_$1.rc
-        echo -n "script for $1 started." >&2
+        IM_CONFIG_NAME=$1
+        eval_gettext "Script for \$IM_CONFIG_NAME started at \$IM_CONFIG_CODE." >&2
         echo >&2
     else
-        echo -n "ERROR: script for $1 not found." >&2
+        IM_CONFIG_NAME=$1
+        eval_gettext "E: Script for \$IM_CONFIG_NAME not found at \$IM_CONFIG_CODE." >&2
         echo >&2
     fi
 }
@@ -64,7 +67,10 @@ avail_auto () {
         . $IM_CONFIG_DATA/??_$1.conf
         package_auto 
     else
-        echo "E: wrong config name: $1" >&2
+        IM_CONFIG_CODE="avail_auto"
+        IM_CONFIG_NAME=$1
+        eval_gettext "E: Configuration for \$IM_CONFIG_NAME not found at \$IM_CONFIG_CODE." >&2
+        echo >&2
         # return FALSE
         return 1
     fi

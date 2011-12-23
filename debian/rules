@@ -5,6 +5,8 @@
 override_dh_auto_build:
 	sed -e "s/@@VERSION@@/$$(dpkg-parsechangelog --format dpkg|sed -ne '/^Version/s/Version: *//p')/"\
          <share/xinputrc.common.in >share/xinputrc.common
+	make -C po mo
 
 override_dh_auto_clean:
 	-rm -f share/xinputrc.common
+	make -C po clean

@@ -4,21 +4,26 @@ im-config for Debian                     Osamu Aoki <osamu@debian.org>
 !	Basic design of im-config
 =======================================================================
 
-1. It activates the most reasonable installed input method automatically 
-   without any action by users or by the system administrator.
+1. If an reasonable and single set of input method packages is 
+   installed, im-config activates it automatically for all users by 
+   default. (recommended situation)
 
-2. It provides a reasonably simple GUI configuration menu which is off
-   by the default.  Menu selected user configuration can override the 
-   system default.  Menu should normally show only available input method
-   on the system.
+2. If several reasonable sets of input method packages are installed, 
+   im-config activates the most reasonable one automatically for all 
+   users by default.
 
-3. Its configuration files are intuitive and its contents can be manually 
+3. It provides a reasonably simple GUI configuration menu which is off
+   for the system menu by the default.  Menu selected user configuration
+   can override the system default.  Menu should normally show only 
+   available input methods on the system.
+
+4. Its configuration files are intuitive and its contents can be manually 
    overridden easily as a POSIX shell hook script.
 
-4. Menu configuration system is smart enough to detect manual changes of
+5. Menu configuration system is smart enough to detect manual changes of
    configuration by editor and honors such changes.
 
-5. POSIX shell script is internationalized via gettext.sh (TODO)
+6. POSIX shell script is internationalized via gettext.sh
 
 =======================================================================
 !	How To Configure Input Method with im-config

@@ -1,3 +1,9 @@
+im-config (0.8) unstable; urgency=low
+
+  * Internationalization with gettext. 
+
+ -- Osamu Aoki <osamu@debian.org>  Tue, 20 Dec 2011 00:37:14 +0900
+
 im-config (0.7) unstable; urgency=low
 
   * Updated fcitx description.

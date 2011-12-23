@@ -9,7 +9,7 @@ Vcs-browser: http://git.debian.org/?p=collab-maint/im-config.git
 
 Package: im-config
 Architecture: all
-Depends: zenity | dialog, ${misc:Depends}
+Depends: zenity | dialog, gettext-base, ${misc:Depends}
 Recommends: x11-common, dialog
 Conflicts: im-switch
 Provides: im-switch
