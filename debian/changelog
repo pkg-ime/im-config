@@ -1,3 +1,10 @@
+im-config (0.9) unstable; urgency=low
+
+  * Moved gettext to xinputrc.common. Thanks Patrice Duroux. 
+    Closes: #653700 
+
+ -- Osamu Aoki <osamu@debian.org>  Fri, 30 Dec 2011 22:50:57 +0900
+
 im-config (0.8) unstable; urgency=low
 
   * Internationalization with gettext. 

@@ -6,11 +6,6 @@
 # Common configuration functions and pre-defined variables
 # used by this im-config and its hook script.
 #############################################################
-. gettext.sh
-TEXTDOMAIN="im-config"
-export TEXTDOMAIN
-TEXTDOMAINDIR="/usr/share/locale/"
-export TEXTDOMAINDIR
 . /usr/share/im-config/xinputrc.common
 #############################################################
 # Set configuration type variables

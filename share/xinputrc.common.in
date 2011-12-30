@@ -11,6 +11,11 @@ IM_CONFIG_DATA=/usr/share/im-config/data
 IM_CONFIG_XINPUTRC_USR=$HOME/.xinputrc
 IM_CONFIG_XINPUTRC_SYS=/etc/X11/xinit/xinputrc
 IM_CONFIG_DEFAULT=/etc/default/im-config
+. gettext.sh
+TEXTDOMAIN="im-config"
+export TEXTDOMAIN
+TEXTDOMAINDIR="/usr/share/locale/"
+export TEXTDOMAINDIR
 
 if [ -r $IM_CONFIG_DEFAULT ]; then
     . $IM_CONFIG_DEFAULT
