@@ -12,9 +12,10 @@ locale/%/LC_MESSAGES/$(PROGRAM).mo: %.po
 	mkdir -p locale/$*/LC_MESSAGES
 	msgfmt -o $@ $<
 
-mo: locale/ja/LC_MESSAGES/$(PROGRAM).mo
+mo: locale/ja/LC_MESSAGES/$(PROGRAM).mo \
+    locale/de/LC_MESSAGES/$(PROGRAM).mo 
 
-po: ja.po
+po: ja.po de.po
 
 clean:
 	rm -f  *.po~ *.mo
