@@ -5,8 +5,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: im-config 0.9\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-12-25 13:15+0900\n"
-"PO-Revision-Date: 2011-12-25 11:28+0900\n"
+"POT-Creation-Date: 2012-01-15 21:49+0800\n"
+"PO-Revision-Date: 2012-01-17 21:43+0900\n"
 "Last-Translator: Osamu Aoki <osamu@debian.org>\n"
 "Language-Team: Japanese <JAPANESE@example.org>\n"
 "Language: \n"
@@ -14,20 +14,20 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: ../im-config:20
+#: ../im-config:15
 msgid "system configuration"
 msgstr "システム設定"
 
-#: ../im-config:23
+#: ../im-config:18
 msgid "user configuration"
 msgstr "ユーザー設定"
 
-#: ../im-config:31
+#: ../im-config:26
 #, sh-format
 msgid "Input Method Configuration (im-config, ver. $IM_CONFIG_VERSION)"
 msgstr "インプットメソッド設定 (im-config, ver. $IM_CONFIG_VERSION)"
 
-#: ../im-config:52
+#: ../im-config:47
 #, sh-format
 msgid ""
 "$IM_CONFIG_ID\n"
@@ -38,24 +38,15 @@ msgstr ""
 "(c) 青木　修 <osamu@debian.org>, GPL-2+\n"
 "im-config(8)、/usr/share/doc/im-config/README.Debian.gz を参照。"
 
-#: ../im-config:68
-msgid ""
-"Explicit selection is not required to enable the automatic configuration if "
-"the active one is default/auto/cjkv/missing."
-msgstr ""
-"もし有効設定がdefault/auto/cjkv/missingの場合は、自動設定を有効にするために明"
-"示的選択の必要はありません。"
+#: ../im-config:63
+msgid "Explicit selection is not required to enable the automatic configuration if the active one is default/auto/cjkv/missing."
+msgstr "もし有効設定がdefault/auto/cjkv/missingの場合は、自動設定を有効にするために明示的選択の必要はありません。"
 
-#: ../im-config:69
-msgid ""
-"If a daemon program for the previous configuration is re-started by the X "
-"session manager, you may need to kill it manually with kill(1)."
-msgstr ""
-"もし過去の設定によるデーモンプログラムが X セッションマネージャーにより再起動"
-"される場合には、kill(1) を用いてそのプロセスをマニュアルで殺す必要があるかも"
-"しれません。"
+#: ../im-config:64
+msgid "If a daemon program for the previous configuration is re-started by the X session manager, you may need to kill it manually with kill(1)."
+msgstr "もし過去の設定によるデーモンプログラムが X セッションマネージャーにより再起動される場合には、kill(1) を用いてそのプロセスをマニュアルで殺す必要があるかもしれません。"
 
-#: ../im-config:70
+#: ../im-config:65
 #, sh-format
 msgid ""
 "$IM_CONFIG_RTFM\n"
@@ -64,41 +55,36 @@ msgstr ""
 "$IM_CONFIG_RTFM\n"
 "詳細は im-config(8) と /usr/share/doc/im-config/README.Debian.gz を参照。"
 
-#: ../im-config:74
+#: ../im-config:69
 #, sh-format
 msgid ""
 "The $IM_CONFIG_XINPUTRC_TYPE has been manually modified.\n"
-"Remove the $IM_CONFIG_XINPUTRC_TYPE $IM_CONFIG_XINPUTRC manually to use im-"
-"config.\n"
+"Remove the $IM_CONFIG_XINPUTRC_TYPE $IM_CONFIG_XINPUTRC manually to use im-config.\n"
 "$IM_CONFIG_RTFM"
 msgstr ""
 "$IM_CONFIG_XINPUTRC_TYPE が手動で変更された。\n"
-"im-config を使うには $IM_CONFIG_XINPUTRC_TYPE $IM_CONFIG_XINPUTRC を手動で削"
-"除して下さい。\n"
+"im-config を使うには $IM_CONFIG_XINPUTRC_TYPE $IM_CONFIG_XINPUTRC を手動で削除して下さい。\n"
 "$IM_CONFIG_RTFM"
 
-#: ../im-config:92
+#: ../im-config:87
 #, sh-format
 msgid ""
 "Current configuration for the input method:\n"
 " * Active configuration: $IM_CONFIG_ACTIVE (normally missing)\n"
-" * Automatic configuration: $IM_CONFIG_AUTOMATIC (normally ibus or fcitx or "
-"uim)\n"
+" * Automatic configuration: $IM_CONFIG_AUTOMATIC (normally ibus or fcitx or uim)\n"
 " * Number of valid choices: $IM_CONFIG_NUMBER (normally 1)\n"
 "The configuration set by im-config is activated by re-starting X."
 msgstr ""
 "インプットメソッドの現在の設定:\n"
 " * 有効設定: $IM_CONFIG_ACTIVE (通常 missing)\n"
 " * 自動設定: $IM_CONFIG_AUTOMATIC (通常 ibus か fcitx か uim)\n"
-" * 有効選択肢数: $IM_CONFIG_NUMBER (通常 1)im-config による設定は X を再起動"
-"することで有効になります。"
+" * 有効選択肢数: $IM_CONFIG_NUMBER (通常 1)im-config による設定は X を再起動することで有効になります。"
 
-#: ../im-config:100
+#: ../im-config:95
 #, sh-format
 msgid ""
 "$IM_CONFIG_MSG\n"
-"In order to enter non-ASCII native characters, you must install one set of "
-"input method tools:\n"
+"In order to enter non-ASCII native characters, you must install one set of input method tools:\n"
 " * ibus and its assocoated packages (recommended)\n"
 "   * multilingual support\n"
 "   * GUI configuration\n"
@@ -113,8 +99,7 @@ msgid ""
 "$IM_CONFIG_MSGA"
 msgstr ""
 "$IM_CONFIG_MSG\n"
-"non-ASCII の各国語文字入力をするには、インプットメソッドツールを1セット導入す"
-"る必要がある:\n"
+"non-ASCII の各国語文字入力をするには、インプットメソッドツールを1セット導入する必要がある:\n"
 " * ibus とその関連パッケージ (推奨)\n"
 "   * 多言語サポート\n"
 "   * GUI 設定\n"
@@ -128,7 +113,7 @@ msgstr ""
 " * im-config に依存する何らかのパッケージのセット\n"
 "$IM_CONFIG_MSGA"
 
-#: ../im-config:117
+#: ../im-config:112
 #, sh-format
 msgid ""
 "$IM_CONFIG_MSG\n"
@@ -137,22 +122,20 @@ msgstr ""
 "$IM_CONFIG_MSG\n"
 "$IM_CONFIG_MSGA"
 
-#: ../im-config:121
+#: ../im-config:116
 #, sh-format
 msgid ""
 "$IM_CONFIG_MSG\n"
 "$IM_CONFIG_MSGA\n"
 "  Available input methods:$IM_CONFIG_AVAIL\n"
-"Unless you really need them all, please make sure to install only one input "
-"method tool."
+"Unless you really need them all, please make sure to install only one input method tool."
 msgstr ""
 "$IM_CONFIG_MSG\n"
 "$IM_CONFIG_MSGA\n"
 "  使用可能なインプットメソッド:$IM_CONFIG_AVAIL\n"
-"これらすべてが必要でない場合は、必ず一つだけのインプットメソッドツールをイン"
-"ストールするようにしましょう。"
+"これらすべてが必要でない場合は、必ず一つだけのインプットメソッドツールをインストールするようにしましょう。"
 
-#: ../im-config:129
+#: ../im-config:124
 #, sh-format
 msgid ""
 "Do you explicitly select the ${IM_CONFIG_XINPUTRC_TYPE}?\n"
@@ -165,33 +148,30 @@ msgstr ""
 " * 「いいえ」を選択: それを更新したくない場合。(推奨)\n"
 " * 「はい」を選択: それを更新したい場合。"
 
-#: ../im-config:137
+#: ../im-config:132
 #, sh-format
-msgid ""
-"Select $IM_CONFIG_XINPUTRC_TYPE. The user configuration supercedes the "
-"system one."
-msgstr ""
-"$IM_CONFIG_XINPUTRC_TYPE を選択する。ユーザー設定はシステム設定より優先され"
-"る。"
+msgid "Select $IM_CONFIG_XINPUTRC_TYPE. The user configuration supercedes the system one."
+msgstr "$IM_CONFIG_XINPUTRC_TYPE を選択する。ユーザー設定はシステム設定より優先される。"
 
-#: ../im-config:138
+#: ../im-config:133
 msgid "select"
 msgstr "選択肢"
 
-#: ../im-config:139
+#: ../im-config:134
 msgid "name"
 msgstr "名前"
 
-#: ../im-config:140
+#: ../im-config:135
 msgid "description"
 msgstr "内容"
 
-#: ../im-config:168
+#: ../im-config:163
 #, sh-format
 msgid "Removing the $IM_CONFIG_XINPUTRC_TYPE $IM_CONFIG_XINPUTRC."
 msgstr "IM $IM_CONFIG_XINPUTRC_TYPE $IM_CONFIG_XINPUTRC を削除。"
 
-#: ../im-config:169 ../im-config:186
+#: ../im-config:164
+#: ../im-config:181
 #, sh-format
 msgid ""
 "The $IM_CONFIG_XINPUTRC_TYPE is modified by im-config.\n"
@@ -199,34 +179,27 @@ msgid ""
 "$IM_CONFIG_RTFM"
 msgstr ""
 "$IM_CONFIG_XINPUTRC_TYPE が im-config により変更された。\n"
-"新たな$IM_CONFIG_XINPUTRC_TYPEファイルを有効にするには X セッションを再起動し"
-"ます。\n"
+"新たな$IM_CONFIG_XINPUTRC_TYPEファイルを有効にするには X セッションを再起動します。\n"
 "$IM_CONFIG_RTFM"
 
-#: ../im-config:175 ../im-config:200
+#: ../im-config:170
+#: ../im-config:195
 #, sh-format
 msgid "Keeping the $IM_CONFIG_XINPUTRC_TYPE $IM_CONFIG_XINPUTRC as missing."
 msgstr "IM $IM_CONFIG_XINPUTRC_TYPE $IM_CONFIG_XINPUTRC が無いままとする。"
 
-#: ../im-config:177 ../im-config:202
+#: ../im-config:172
+#: ../im-config:197
 #, sh-format
-msgid ""
-"Keeping the $IM_CONFIG_XINPUTRC_TYPE $IM_CONFIG_XINPUTRC unchanged as "
-"$IM_CONFIG_ACTIVE."
-msgstr ""
-"$IM_CONFIG_XINPUTRC_TYPE $IM_CONFIG_XINPUTRC を変更せずに $IM_CONFIG_ACTIVE "
-"のまま維持する。"
+msgid "Keeping the $IM_CONFIG_XINPUTRC_TYPE $IM_CONFIG_XINPUTRC unchanged as $IM_CONFIG_ACTIVE."
+msgstr "$IM_CONFIG_XINPUTRC_TYPE $IM_CONFIG_XINPUTRC を変更せずに $IM_CONFIG_ACTIVE のまま維持する。"
 
-#: ../im-config:185
+#: ../im-config:180
 #, sh-format
-msgid ""
-"Setting the $IM_CONFIG_XINPUTRC_TYPE $IM_CONFIG_XINPUTRC to "
-"$IM_CONFIG_ACTIVE."
-msgstr ""
-"$IM_CONFIG_XINPUTRC_TYPE $IM_CONFIG_XINPUTRC を $IM_CONFIG_ACTIVE と設定す"
-"る。"
+msgid "Setting the $IM_CONFIG_XINPUTRC_TYPE $IM_CONFIG_XINPUTRC to $IM_CONFIG_ACTIVE."
+msgstr "$IM_CONFIG_XINPUTRC_TYPE $IM_CONFIG_XINPUTRC を $IM_CONFIG_ACTIVE と設定する。"
 
-#: ../im-config:192
+#: ../im-config:187
 #, sh-format
 msgid ""
 "*** This is merely a simulated run and no changes are made. ***\n"
@@ -237,7 +210,7 @@ msgstr ""
 "\n"
 "$IM_CONFIG_MSG"
 
-#: ../im-config:211
+#: ../im-config:206
 #, sh-format
 msgid ""
 "$IM_CONFIG_MSG\n"
@@ -250,7 +223,7 @@ msgstr ""
 "$IM_CONFIG_AUTOMATIC_LONG\n"
 "$IM_CONFIG_RTFM"
 
-#: ../im-config:218
+#: ../im-config:213
 #, sh-format
 msgid ""
 "$IM_CONFIG_MSG\n"
@@ -271,14 +244,12 @@ msgstr "$IM_CONFIG_DEFAULT_MODE モードを使用 ($IM_CONFIG_DEFAULT が欠落
 #: ../data/00_default.conf:7
 #, sh-format
 msgid "use $IM_CONFIG_DEFAULT_MODE mode (bogus content in $IM_CONFIG_DEFAULT)"
-msgstr ""
-"$IM_CONFIG_DEFAULT_MODE モードを使用 ($IM_CONFIG_DEFAULT の内容に問題あり)"
+msgstr "$IM_CONFIG_DEFAULT_MODE モードを使用 ($IM_CONFIG_DEFAULT の内容に問題あり)"
 
 #: ../data/00_default.conf:9
 #, sh-format
 msgid "use $IM_CONFIG_DEFAULT_MODE mode set by $IM_CONFIG_DEFAULT"
-msgstr ""
-"$IM_CONFIG_DEFAULT により設定された $IM_CONFIG_DEFAULT_MODE モードを使用"
+msgstr "$IM_CONFIG_DEFAULT により設定された $IM_CONFIG_DEFAULT_MODE モードを使用"
 
 #: ../data/01_auto.conf:2
 msgid "activate IM with @-mark for all locales"
@@ -342,8 +313,7 @@ msgid ""
 "Flexible Input Method Framework (fcitx)\n"
 " * Required for all: fcitx\n"
 " * Language specific input conversion support:\n"
-"   * Simplified Chinese: fcitx-pinyin or fcitx-sunpinyin or fcitx-"
-"googlepinyin\n"
+"   * Simplified Chinese: fcitx-pinyin or fcitx-sunpinyin or fcitx-googlepinyin\n"
 "   * Generic keyboard translation table: fcitx-table* packages\n"
 " * Application platform support:\n"
 "   * GNOME/GTK+: fcitx-frontend-gtk2 and fcitx-frontend-gtk3 (both)\n"
@@ -352,8 +322,7 @@ msgstr ""
 "フレキシブルインプットメソッド (fcitx)\n"
 " * 必ず必要: fcitx\n"
 " * 言語固有の入力変換サポート:\n"
-"   * 簡体中国語: fcitx-pinyin または fcitx-sunpinyin または fcitx-"
-"googlepinyin\n"
+"   * 簡体中国語: fcitx-pinyin または fcitx-sunpinyin または fcitx-googlepinyin\n"
 "   * 汎用キーボード変換テーブル: fcitx-table* パッケージ\n"
 " * アプリケーションプラットフォームサポート:\n"
 "   * GNOME/GTK+: fcitx-frontend-gtk2 と fcitx-frontend-gtk3 (両方)\n"
@@ -392,6 +361,31 @@ msgstr ""
 "   * GNOME/GTK+: uim-gtk2.0 と uim-gtk3 (両方)\n"
 "   * KDE/Qt4: uim-qt\n"
 "   * EMACS: uim-el"
+
+#: ../data/25_hime.conf:2
+msgid "activate HIME Input Method Editor (hime)"
+msgstr "ヒメインプットメソッドエディター (hime) を有効にする"
+
+#: ../data/25_hime.conf:4
+msgid ""
+"HIME Input Method Editor (hime)\n"
+" * Required for all: hime\n"
+" * Language specific input conversion support:\n"
+"  * Traditional Chinese: hime-chewing\n"
+"  * Japanese: hime-anthy\n"
+" * Application platform support:\n"
+"  * GNOME/GTK+: hime-gtk3-immodule \n"
+"  * KDE/Qt: hime-qt4-immodule"
+msgstr ""
+"ヒメインプットメソッドエディター (hime)\n"
+" * 必ず必要: hime\n"
+" * 言語固有の入力変換サポート:\n"
+"   * 繁体中国語: hime-chewing\n"
+"   * 日本語: hime-anthy\n"
+"   * 汎用キーボード変換テーブル: fcitx-table* パッケージ\n"
+" * アプリケーションプラットフォームサポート:\n"
+"   * GNOME/GTK+: hime-gtk3-immodule\n"
+"   * KDE/Qt4: hime-qt4-immodule"
 
 #: ../data/48_scim.conf:2
 msgid "activate Smart Common Input Method (SCIM)"
@@ -480,12 +474,10 @@ msgstr "いかなる IM も入力に使用しない"
 #: ../data/79_none.conf:4
 msgid ""
 "This forces not to use any IM for input.\n"
-"This is the automatic configuration choice if no required IM packages are "
-"installed."
+"This is the automatic configuration choice if no required IM packages are installed."
 msgstr ""
 "強制的にIM を一切使用しなくする。\n"
-"これは必要な IM パッケージがインストールされていない場合の自動設定の選択肢で"
-"す。"
+"これは必要な IM パッケージがインストールされていない場合の自動設定の選択肢です。"
 
 #: ../data/80_kinput2.conf:2
 msgid "activate XIM for Japanese with kinput2"
@@ -526,8 +518,7 @@ msgid "Custom Configuration"
 msgstr "カスタム設定"
 
 #: ../data/90_custom.conf:4
-msgid ""
-"Custom configuration is created by the user or administrator using editor."
+msgid "Custom configuration is created by the user or administrator using editor."
 msgstr "ユーザーまたは管理者がエディターを用いてカスタム設定を作成した。"
 
 #: ../data/90_missing.conf:2
@@ -538,18 +529,24 @@ msgstr "欠落"
 msgid "Missing configuration file."
 msgstr "設定ファイルの欠落。"
 
-#: ../share/im-config.common:46 ../share/im-config.common:64
-#: ../share/im-config.common:82 ../share/xinputrc.common.in:72
+#: ../share/im-config.common:46
+#: ../share/im-config.common:64
+#: ../share/im-config.common:82
+#: ../share/xinputrc.common:77
+#: ../share/xinputrc.common.in:77
 #, sh-format
 msgid "E: Configuration for $IM_CONFIG_NAME not found at $IM_CONFIG_CODE."
 msgstr "E: $IM_CONFIG_NAME 用の設定が $IM_CONFIG_CODE にありません。"
 
-#: ../share/xinputrc.common.in:28
+#: ../share/xinputrc.common:33
+#: ../share/xinputrc.common.in:33
 #, sh-format
 msgid "Script for $IM_CONFIG_NAME started at $IM_CONFIG_CODE."
 msgstr "$IM_CONFIG_CODE で起動される $IM_CONFIG_NAME 用のスクリプト。"
 
-#: ../share/xinputrc.common.in:32
+#: ../share/xinputrc.common:37
+#: ../share/xinputrc.common.in:37
 #, sh-format
 msgid "E: Script for $IM_CONFIG_NAME not found at $IM_CONFIG_CODE."
 msgstr "E: $IM_CONFIG_NAME 用のスクリプトが $IM_CONFIG_CODE にありません。"
+

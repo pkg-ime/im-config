@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-12-25 13:15+0900\n"
+"POT-Creation-Date: 2012-01-15 21:49+0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,20 +17,20 @@ msgstr ""
 "Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: ../im-config:20
+#: ../im-config:15
 msgid "system configuration"
 msgstr ""
 
-#: ../im-config:23
+#: ../im-config:18
 msgid "user configuration"
 msgstr ""
 
-#: ../im-config:31
+#: ../im-config:26
 #, sh-format
 msgid "Input Method Configuration (im-config, ver. $IM_CONFIG_VERSION)"
 msgstr ""
 
-#: ../im-config:52
+#: ../im-config:47
 #, sh-format
 msgid ""
 "$IM_CONFIG_ID\n"
@@ -38,26 +38,26 @@ msgid ""
 "See im-config(8), /usr/share/doc/im-config/README.Debian.gz."
 msgstr ""
 
-#: ../im-config:68
+#: ../im-config:63
 msgid ""
 "Explicit selection is not required to enable the automatic configuration if "
 "the active one is default/auto/cjkv/missing."
 msgstr ""
 
-#: ../im-config:69
+#: ../im-config:64
 msgid ""
 "If a daemon program for the previous configuration is re-started by the X "
 "session manager, you may need to kill it manually with kill(1)."
 msgstr ""
 
-#: ../im-config:70
+#: ../im-config:65
 #, sh-format
 msgid ""
 "$IM_CONFIG_RTFM\n"
 "See im-config(8) and /usr/share/doc/im-config/README.Debian.gz for more."
 msgstr ""
 
-#: ../im-config:74
+#: ../im-config:69
 #, sh-format
 msgid ""
 "The $IM_CONFIG_XINPUTRC_TYPE has been manually modified.\n"
@@ -66,7 +66,7 @@ msgid ""
 "$IM_CONFIG_RTFM"
 msgstr ""
 
-#: ../im-config:92
+#: ../im-config:87
 #, sh-format
 msgid ""
 "Current configuration for the input method:\n"
@@ -77,7 +77,7 @@ msgid ""
 "The configuration set by im-config is activated by re-starting X."
 msgstr ""
 
-#: ../im-config:100
+#: ../im-config:95
 #, sh-format
 msgid ""
 "$IM_CONFIG_MSG\n"
@@ -97,14 +97,14 @@ msgid ""
 "$IM_CONFIG_MSGA"
 msgstr ""
 
-#: ../im-config:117
+#: ../im-config:112
 #, sh-format
 msgid ""
 "$IM_CONFIG_MSG\n"
 "$IM_CONFIG_MSGA"
 msgstr ""
 
-#: ../im-config:121
+#: ../im-config:116
 #, sh-format
 msgid ""
 "$IM_CONFIG_MSG\n"
@@ -114,7 +114,7 @@ msgid ""
 "method tool."
 msgstr ""
 
-#: ../im-config:129
+#: ../im-config:124
 #, sh-format
 msgid ""
 "Do you explicitly select the ${IM_CONFIG_XINPUTRC_TYPE}?\n"
@@ -123,31 +123,31 @@ msgid ""
 " * Select YES, if you wish to update it."
 msgstr ""
 
-#: ../im-config:137
+#: ../im-config:132
 #, sh-format
 msgid ""
 "Select $IM_CONFIG_XINPUTRC_TYPE. The user configuration supercedes the "
 "system one."
 msgstr ""
 
-#: ../im-config:138
+#: ../im-config:133
 msgid "select"
 msgstr ""
 
-#: ../im-config:139
+#: ../im-config:134
 msgid "name"
 msgstr ""
 
-#: ../im-config:140
+#: ../im-config:135
 msgid "description"
 msgstr ""
 
-#: ../im-config:168
+#: ../im-config:163
 #, sh-format
 msgid "Removing the $IM_CONFIG_XINPUTRC_TYPE $IM_CONFIG_XINPUTRC."
 msgstr ""
 
-#: ../im-config:169 ../im-config:186
+#: ../im-config:164 ../im-config:181
 #, sh-format
 msgid ""
 "The $IM_CONFIG_XINPUTRC_TYPE is modified by im-config.\n"
@@ -155,26 +155,26 @@ msgid ""
 "$IM_CONFIG_RTFM"
 msgstr ""
 
-#: ../im-config:175 ../im-config:200
+#: ../im-config:170 ../im-config:195
 #, sh-format
 msgid "Keeping the $IM_CONFIG_XINPUTRC_TYPE $IM_CONFIG_XINPUTRC as missing."
 msgstr ""
 
-#: ../im-config:177 ../im-config:202
+#: ../im-config:172 ../im-config:197
 #, sh-format
 msgid ""
 "Keeping the $IM_CONFIG_XINPUTRC_TYPE $IM_CONFIG_XINPUTRC unchanged as "
 "$IM_CONFIG_ACTIVE."
 msgstr ""
 
-#: ../im-config:185
+#: ../im-config:180
 #, sh-format
 msgid ""
 "Setting the $IM_CONFIG_XINPUTRC_TYPE $IM_CONFIG_XINPUTRC to "
 "$IM_CONFIG_ACTIVE."
 msgstr ""
 
-#: ../im-config:192
+#: ../im-config:187
 #, sh-format
 msgid ""
 "*** This is merely a simulated run and no changes are made. ***\n"
@@ -182,7 +182,7 @@ msgid ""
 "$IM_CONFIG_MSG"
 msgstr ""
 
-#: ../im-config:211
+#: ../im-config:206
 #, sh-format
 msgid ""
 "$IM_CONFIG_MSG\n"
@@ -191,7 +191,7 @@ msgid ""
 "$IM_CONFIG_RTFM"
 msgstr ""
 
-#: ../im-config:218
+#: ../im-config:213
 #, sh-format
 msgid ""
 "$IM_CONFIG_MSG\n"
@@ -288,6 +288,22 @@ msgid ""
 "   * GNOME/GTK+: uim-gtk2.0 and uim-gtk3 (both)\n"
 "   * KDE/Qt4: uim-qt\n"
 "   * EMACS: uim-el"
+msgstr ""
+
+#: ../data/25_hime.conf:2
+msgid "activate HIME Input Method Editor (hime)"
+msgstr ""
+
+#: ../data/25_hime.conf:4
+msgid ""
+"HIME Input Method Editor (hime)\n"
+" * Required for all: hime\n"
+" * Language specific input conversion support:\n"
+"  * Traditional Chinese: hime-chewing\n"
+"  * Japanese: hime-anthy\n"
+" * Application platform support:\n"
+"  * GNOME/GTK+: hime-gtk3-immodule \n"
+"  * KDE/Qt: hime-qt4-immodule"
 msgstr ""
 
 #: ../data/48_scim.conf:2
@@ -404,17 +420,18 @@ msgid "Missing configuration file."
 msgstr ""
 
 #: ../share/im-config.common:46 ../share/im-config.common:64
-#: ../share/im-config.common:82 ../share/xinputrc.common.in:72
+#: ../share/im-config.common:82 ../share/xinputrc.common:77
+#: ../share/xinputrc.common.in:77
 #, sh-format
 msgid "E: Configuration for $IM_CONFIG_NAME not found at $IM_CONFIG_CODE."
 msgstr ""
 
-#: ../share/xinputrc.common.in:28
+#: ../share/xinputrc.common:33 ../share/xinputrc.common.in:33
 #, sh-format
 msgid "Script for $IM_CONFIG_NAME started at $IM_CONFIG_CODE."
 msgstr ""
 
-#: ../share/xinputrc.common.in:32
+#: ../share/xinputrc.common:37 ../share/xinputrc.common.in:37
 #, sh-format
 msgid "E: Script for $IM_CONFIG_NAME not found at $IM_CONFIG_CODE."
 msgstr ""

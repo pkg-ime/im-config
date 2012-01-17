@@ -1,8 +1,9 @@
 im-config (0.10) unstable; urgency=low
 
-  * Added German transklation. Thanks Hendrik Knackstedt.
+  * Added German translation. Thanks Hendrik Knackstedt.
+  * Added HIME and Chinese translation.  Thank Yao Wei. Closes: #652522
 
- -- Osamu Aoki <osamu@debian.org>  Tue, 03 Jan 2012 13:08:54 +0900
+ -- Osamu Aoki <osamu@debian.org>  Tue, 17 Jan 2012 22:06:36 +0900
 
 im-config (0.9) unstable; urgency=low
 

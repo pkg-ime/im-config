@@ -13,9 +13,11 @@ locale/%/LC_MESSAGES/$(PROGRAM).mo: %.po
 	msgfmt -o $@ $<
 
 mo: locale/ja/LC_MESSAGES/$(PROGRAM).mo \
-    locale/de/LC_MESSAGES/$(PROGRAM).mo 
+	locale/de/LC_MESSAGES/$(PROGRAM).mo \
+	locale/zh_TW/LC_MESSAGES/$(PROGRAM).mo \
+	locale/zh_CN/LC_MESSAGES/$(PROGRAM).mo
 
-po: ja.po de.po
+po: ja.po de.po zh_TW.po zh_CN.po
 
 clean:
 	rm -f  *.po~ *.mo
