@@ -1,17 +1,16 @@
-# im-config program
-# Copyright (C) 2012 Yao Wei (魏铭廷) <mwei@lxde.org>
-# This file is distributed under the same license as the PACKAGE package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-# Converted by opencc -c zhtw2zhcn_s.ini from zh_TW
+# Chinese (China) translation of im-config package.
+# Copyright (C) 2012 Free Software Foundation, Inc.
+# This file is distributed under the same license as the im-config package.
+# Aron Xu <aron@debian.org>, 2012.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: im-config 0.9\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2012-01-15 21:49+0800\n"
-"PO-Revision-Date: 2012-01-15 21:42+0800\n"
-"Last-Translator: Yao Wei (魏铭廷) <mwei@lxde.org>\n"
-"Language-Team: Debian-user in Chinese [Big5] <debian-chinese-big5@lists.debian.org>"
+"PO-Revision-Date: 2012-01-24 00:18+0800\n"
+"Last-Translator: Aron Xu <aron@debian.org>\n"
+"Language-Team: Chinese (simplified) <i18n-zh@googlegroups.com>\n"
 "Language: Chinese (Simplified)>\n"
 "Language: \n"
 "MIME-Version: 1.0\n"
@@ -20,16 +19,16 @@ msgstr ""
 
 #: ../im-config:15
 msgid "system configuration"
-msgstr "系统默认值"
+msgstr "系统设置"
 
 #: ../im-config:18
 msgid "user configuration"
-msgstr "使用者设定值"
+msgstr "用户设置"
 
 #: ../im-config:26
 #, sh-format
 msgid "Input Method Configuration (im-config, ver. $IM_CONFIG_VERSION)"
-msgstr "输入法设定程式 (im-config, 版本 $IM_CONFIG_VERSION)"
+msgstr "输入法配置(im-config 版本 $IM_CONFIG_VERSION)"
 
 #: ../im-config:47
 #, sh-format
@@ -40,23 +39,23 @@ msgid ""
 msgstr ""
 "$IM_CONFIG_ID\n"
 "(c) 青木 修 <osamu@debian.org>, GPL-2+\n"
-"请参考 im-config(8) 与 /usr/share/doc/im-config/README.Debian.gz。"
+"请参考 im-config(8) 与 /usr/share/doc/im-config/README.Debian.gz"
 
 #: ../im-config:63
 msgid ""
 "Explicit selection is not required to enable the automatic configuration if "
 "the active one is default/auto/cjkv/missing."
 msgstr ""
-"如果正在使用的是 default/auto/cjkv/missing，您不需要另外选择即可使用自动设"
-"定。"
+"如果正在使用的是 default/auto/cjkv/missing，您不需要另外进行选择"
+"即可使用默认配置。"
 
 #: ../im-config:64
 msgid ""
 "If a daemon program for the previous configuration is re-started by the X "
 "session manager, you may need to kill it manually with kill(1)."
 msgstr ""
-"如果先前设定的背景程式被 X 工作阶段管理程式 (session manager) 重新启动，您可"
-"能需要使用 kill(1) 来结束程式。"
+"如果使用旧配置的守护进程被 X 会话管理器重启，您可能需要使用 kill(1) 手工"
+"将其杀死。"
 
 #: ../im-config:65
 #, sh-format
@@ -65,7 +64,7 @@ msgid ""
 "See im-config(8) and /usr/share/doc/im-config/README.Debian.gz for more."
 msgstr ""
 "$IM_CONFIG_RTFM\n"
-"请参考 im-config(8) 与 /usr/share/doc/im-config/README.Debian.gz。"
+"请参考 im-config(8) 和 /usr/share/doc/im-config/README.Debian.gz"
 
 #: ../im-config:69
 #, sh-format
@@ -75,8 +74,8 @@ msgid ""
 "config.\n"
 "$IM_CONFIG_RTFM"
 msgstr ""
-"$IM_CONFIG_XINPUTRC_TYPE已经被手动修改。\n"
-"请手动删除$IM_CONFIG_XINPUTRC_TYPE $IM_CONFIG_XINPUTRC 以使用 im-config。\n"
+"$IM_CONFIG_XINPUTRC_TYPE 已经被手动修改。\n"
+"请手动移除 $IM_CONFIG_XINPUTRC_TYPE $IM_CONFIG_XINPUTRC 以使用 im-config。\n"
 "$IM_CONFIG_RTFM"
 
 #: ../im-config:87
@@ -89,11 +88,11 @@ msgid ""
 " * Number of valid choices: $IM_CONFIG_NUMBER (normally 1)\n"
 "The configuration set by im-config is activated by re-starting X."
 msgstr ""
-"目前的输入法设定:\n"
+"目前的输入法设置:\n"
 " * 正在使用: $IM_CONFIG_ACTIVE (一般是 missing)\n"
-" * 自动设定: $IM_CONFIG_AUTOMATIC (一般是 ibus or fcitx or uim)\n"
+" * 自动设置: $IM_CONFIG_AUTOMATIC (一般是 ibus 或 fcitx 或 uim)\n"
 " * 可选择的项目数: $IM_CONFIG_NUMBER (一般是 1)\n"
-"重新启动 X 以后即可启用 im-config 的设定。"
+"重新启动 X 以后即可启用 im-config 的设置。"
 
 #: ../im-config:95
 #, sh-format
@@ -115,17 +114,17 @@ msgid ""
 "$IM_CONFIG_MSGA"
 msgstr ""
 "$IM_CONFIG_MSG\n"
-"为了输入非 ASCII 字符，您必须安装以下输入法工具：\n"
-" * ibus 及其相关套件 (recommended)\n"
-"   * 多国语言支援\n"
-"   * 图形接口设定\n"
+"为了输入非 ASCII 字符，您必须安装以下输入平台之一：\n"
+" * ibus 及其相关套件(推荐)\n"
+"   * 多国语言支持\n"
+"   * 图形设置界面\n"
 " * fcitx 及其相关套件\n"
-"   * 以中文为主的多国语言支援\n"
-"   * 图形接口设定\n"
+"   * 以中文为主的多国语言支持\n"
+"   * 图形设置界面\n"
 " * uim 及其相关套件\n"
-"   * 多国语言支援\n"
-"   * 使用 Scheme 程式码手动设定\n"
-"   * 文字终端机支援，即使在没有 X 的环境中\n"
+"   * 多国语言支持\n"
+"   * 支持 Scheme 语言配置\n"
+"   * 支持非 X 环境下的文字终端\n"
 " * 其他相依于 im-config 的套件\n"
 "$IM_CONFIG_MSGA"
 
@@ -149,8 +148,8 @@ msgid ""
 msgstr ""
 "$IM_CONFIG_MSG\n"
 "$IM_CONFIG_MSGA\n"
-"  可用的输入法: $IM_CONFIG_AVAIL\n"
-"除非您真的全都需要，请确认您只安装一套输入法工具。"
+"  可用的输入平台: $IM_CONFIG_AVAIL\n"
+"除非您真的全都需要，请确认只安装一套输入平台工具。"
 
 #: ../im-config:124
 #, sh-format
@@ -162,15 +161,15 @@ msgid ""
 msgstr ""
 "您要指定${IM_CONFIG_XINPUTRC_TYPE}吗？\n"
 "\n"
-" * 如果您不想要指定，请选择「否」。(建议)\n"
-" * 如果您想要指定，请选择「是」。"
+" * 如果您想使用默认配置，请选否。(推荐)\n"
+" * 如果您想要手工指定，请选是。"
 
 #: ../im-config:132
 #, sh-format
 msgid ""
 "Select $IM_CONFIG_XINPUTRC_TYPE. The user configuration supercedes the "
 "system one."
-msgstr "选择$IM_CONFIG_XINPUTRC_TYPE。使用者设定值会盖过系统默认值。"
+msgstr "选择 $IM_CONFIG_XINPUTRC_TYPE。用户设置将会覆盖系统默认设置。"
 
 #: ../im-config:133
 msgid "select"
@@ -187,7 +186,7 @@ msgstr "注释"
 #: ../im-config:163
 #, sh-format
 msgid "Removing the $IM_CONFIG_XINPUTRC_TYPE $IM_CONFIG_XINPUTRC."
-msgstr "移除$IM_CONFIG_XINPUTRC_TYPE $IM_CONFIG_XINPUTRC。"
+msgstr "移除 $IM_CONFIG_XINPUTRC_TYPE 和 $IM_CONFIG_XINPUTRC。"
 
 #: ../im-config:164 ../im-config:181
 #, sh-format
@@ -196,14 +195,14 @@ msgid ""
 "Restart the X session to activate the new $IM_CONFIG_XINPUTRC_TYPE.\n"
 "$IM_CONFIG_RTFM"
 msgstr ""
-"$IM_CONFIG_XINPUTRC_TYPE已经被 im-config 修改。\n"
-"请重新启动 X 工作阶段 (session) 来使用新的$IM_CONFIG_XINPUTRC_TYPE。\n"
+"$IM_CONFIG_XINPUTRC_TYPE 已被 im-config 修改。\n"
+"请重新启动 X 会话管理器以激活新的 $IM_CONFIG_XINPUTRC_TYPE。\n"
 "$IM_CONFIG_RTFM"
 
 #: ../im-config:170 ../im-config:195
 #, sh-format
 msgid "Keeping the $IM_CONFIG_XINPUTRC_TYPE $IM_CONFIG_XINPUTRC as missing."
-msgstr "保留$IM_CONFIG_XINPUTRC_TYPE $IM_CONFIG_XINPUTRC 没有设定。"
+msgstr "保留 $IM_CONFIG_XINPUTRC_TYPE 和 $IM_CONFIG_XINPUTRC 为 missing。"
 
 #: ../im-config:172 ../im-config:197
 #, sh-format
@@ -211,8 +210,8 @@ msgid ""
 "Keeping the $IM_CONFIG_XINPUTRC_TYPE $IM_CONFIG_XINPUTRC unchanged as "
 "$IM_CONFIG_ACTIVE."
 msgstr ""
-"保留$IM_CONFIG_XINPUTRC_TYPE $IM_CONFIG_XINPUTRC 的设定值 $IM_CONFIG_ACTIVE "
-"不变。"
+"保留 $IM_CONFIG_XINPUTRC_TYPE $IM_CONFIG_XINPUTRC 不变，仍为 \n"
+"$IM_CONFIG_ACTIVE"
 
 #: ../im-config:180
 #, sh-format
@@ -220,7 +219,7 @@ msgid ""
 "Setting the $IM_CONFIG_XINPUTRC_TYPE $IM_CONFIG_XINPUTRC to "
 "$IM_CONFIG_ACTIVE."
 msgstr ""
-"设定$IM_CONFIG_XINPUTRC_TYPE $IM_CONFIG_XINPUTRC 为 $IM_CONFIG_ACTIVE。"
+"设置 $IM_CONFIG_XINPUTRC_TYPE $IM_CONFIG_XINPUTRC 为 $IM_CONFIG_ACTIVE。"
 
 #: ../im-config:187
 #, sh-format
@@ -229,7 +228,7 @@ msgid ""
 "\n"
 "$IM_CONFIG_MSG"
 msgstr ""
-"*** 这只是仿真执行，并没有修改任何设定。 ***\n"
+"*** 这只是模拟执行，并没有进行实际修改。 ***\n"
 "\n"
 "$IM_CONFIG_MSG"
 
@@ -242,7 +241,7 @@ msgid ""
 "$IM_CONFIG_RTFM"
 msgstr ""
 "$IM_CONFIG_MSG\n"
-"自动设定选择: $IM_CONFIG_AUTOMATIC\n"
+"自动设置选择: $IM_CONFIG_AUTOMATIC\n"
 "$IM_CONFIG_AUTOMATIC_LONG\n"
 "$IM_CONFIG_RTFM"
 
@@ -255,24 +254,24 @@ msgid ""
 "$IM_CONFIG_RTFM"
 msgstr ""
 "$IM_CONFIG_MSG\n"
-"手动设定选择: $IM_CONFIG_ACTIVE\n"
+"手动设置选择: $IM_CONFIG_ACTIVE\n"
 "$IM_CONFIG_ACTIVE_LONG\n"
 "$IM_CONFIG_RTFM"
 
 #: ../data/00_default.conf:4
 #, sh-format
 msgid "use $IM_CONFIG_DEFAULT_MODE mode (missing $IM_CONFIG_DEFAULT )"
-msgstr "使用 $IM_CONFIG_DEFAULT_MODE 模式 (缺少 $IM_CONFIG_DEFAULT)"
+msgstr "使用 $IM_CONFIG_DEFAULT_MODE 模式(缺少 $IM_CONFIG_DEFAULT)"
 
 #: ../data/00_default.conf:7
 #, sh-format
 msgid "use $IM_CONFIG_DEFAULT_MODE mode (bogus content in $IM_CONFIG_DEFAULT)"
-msgstr "使用 $IM_CONFIG_DEFAULT_MODE 模式 ($IM_CONFIG_DEFAULT 中的内容有问题)"
+msgstr "使用 $IM_CONFIG_DEFAULT_MODE 模式($IM_CONFIG_DEFAULT 中的内容有问题)"
 
 #: ../data/00_default.conf:9
 #, sh-format
 msgid "use $IM_CONFIG_DEFAULT_MODE mode set by $IM_CONFIG_DEFAULT"
-msgstr "依 $IM_CONFIG_DEFAULT 使用 $IM_CONFIG_DEFAULT_MODE 模式"
+msgstr "使用 $IM_CONFIG_DEFAULT 设置的 $IM_CONFIG_DEFAULT_MODE 模式"
 
 #: ../data/01_auto.conf:2
 msgid "activate IM with @-mark for all locales"
@@ -280,16 +279,16 @@ msgstr "在所有语系中启动有标示 @ 的输入法"
 
 #: ../data/02_cjkv.conf:2
 msgid "activate IM with @-mark only under CJKV"
-msgstr "在中日韩越 (CJKV) 语系中启动有标示 @ 的输入法"
+msgstr "在中日韩越(CJKV)语系中启动有标示 @ 的输入法"
 
 #: ../data/09_REMOVE.conf:2
 #, sh-format
 msgid "remove IM $IM_CONFIG_XINPUTRC_TYPE $IM_CONFIG_XINPUTRC"
-msgstr "移除$IM_CONFIG_XINPUTRC_TYPE $IM_CONFIG_XINPUTRC"
+msgstr "移除 $IM_CONFIG_XINPUTRC_TYPE $IM_CONFIG_XINPUTRC"
 
 #: ../data/20_ibus.conf:2
 msgid "activate Intelligent Input Bus (IBus)"
-msgstr "启动 Intelligent Input Bus (IBus)"
+msgstr "启用 IBus 智能输入法"
 
 #: ../data/20_ibus.conf:4
 msgid ""
@@ -310,26 +309,27 @@ msgid ""
 "   * Clutter: ibus-clutter\n"
 "   * EMACS: ibus-el"
 msgstr ""
-"Intelligent Input Bus (IBus)\n"
-" * 必要套件: ibus\n"
-" * 输入特定语言的支援套件:\n"
-"   * 日文: ibus-mozc (最佳) 或 ibus-anthy 或 ibus-skk\n"
-"   * 韩文: ibus-hangul\n"
-"   * 简体中文: ibus-pinyin or ibus-sunpinyin or ibus-googlepinyin\n"
-"   * 正体中文: ibus-chewing\n"
-"   * 泰文: ibus-table-thai\n"
-"   * 越南文: ibus-unikey 或 ibus-table-viqr\n"
+"IBus 智能输入法\n"
+" * 必须组件：ibus\n"
+" * 输入特定语言所需的组件：\n"
+"   * 简体中文拼音：ibus-pinyin 或 ibus-sunpinyin 或 ibus-googlepinyin\n"
+"   * 简体中文五笔：ibus-table-wubi\n"
+"   * 繁体中文：ibus-chewing 或 ibus-table-quick 或 ibus-table-cangjie\n"
+"   * 日文：ibus-mozc (最佳)或 ibus-anthy 或 ibus-skk\n"
+"   * 韩文：ibus-hangul\n"
+"   * 泰文：ibus-table-thai\n"
+"   * 越南文：ibus-unikey 或 ibus-table-viqr\n"
 "   * X 键盘仿真: ibus-xkbc\n"
-"   * 通用的输入法码表: ibus-m17n or ibus-table* packages\n"
-" * 应用程式平台支援:\n"
-"   * GNOME/GTK+: ibus-gtk 与 ibus-gtk3 (一起安装)\n"
-"   * KDE/Qt: ibus-qt4\n"
-"   * Clutter: ibus-clutter\n"
-"   * EMACS: ibus-el"
+"   * 通用的输入法码表: ibus-m17n 或 ibus-table* packages\n"
+" * 应用程序支持：\n"
+"   * GNOME/GTK+：ibus-gtk 和 ibus-gtk3 (强烈建议同时安装)\n"
+"   * KDE/Qt：ibus-qt4\n"
+"   * Clutter：ibus-clutter\n"
+"   * EMACS：ibus-el"
 
 #: ../data/22_fcitx.conf:2
 msgid "activate Flexible Input Method Framework (fcitx)"
-msgstr "启动小企鹅输入法 (fcitx)"
+msgstr "启用小企鹅输入法(Fcitx)"
 
 #: ../data/22_fcitx.conf:4
 msgid ""
@@ -343,14 +343,17 @@ msgid ""
 "   * GNOME/GTK+: fcitx-frontend-gtk2 and fcitx-frontend-gtk3 (both)\n"
 "   * KDE/Qt4: fcitx-frontend-qt4"
 msgstr ""
-"小企鹅输入法 (fcitx)\n"
-" * 必要套件: fcitx\n"
-" * 输入特定语言的支援套件:\n"
-"   * 简体中文: fcitx-pinyin 或 fcitx-sunpinyin 或 fcitx-googlepinyin\n"
+"小企鹅输入法(Fcitx)\n"
+" * 必需组件：fcitx\n"
+" * 输入特定语言所需的组件：\n"
+"   * 简体中文拼音：fcitx-sunpinyin 或 fcitx-googlepinyin 或 fcitx-pinyin\n"
+"   * 简体中文五笔：fcitx-table-wubi 或 fcitx-table-wbpy\n"
+"   * 繁体中文：fcitx-table-cangjie\n"
 "   * 通用的输入法码表: fcitx-table* 套件\n"
-" * 应用程式平台支援:\n"
-"   * GNOME/GTK+: fcitx-frontend-gtk2 与 fcitx-frontend-gtk3 (一起安装)\n"
-"   * KDE/Qt4: fcitx-frontend-qt4"
+" * 应用程序支持：\n"
+"   * GNOME/GTK+：fcitx-frontend-gtk2 和 fcitx-frontend-gtk3\n"
+"                  (强烈建议同时安装)\n"
+"   * KDE/Qt4：fcitx-frontend-qt4"
 
 #: ../data/24_uim.conf:2
 msgid "activate universal input method (uim)"
@@ -373,22 +376,22 @@ msgid ""
 "   * EMACS: uim-el"
 msgstr ""
 "universal input method (uim)\n"
-" * 必要套件: uim\n"
-" * 输入特定语言的支援套件:\n"
-"   * 日文: uim-mozc (最佳) 或 uim-anthy 或 uim-skk\n"
-"   * 韩文: uim-byeoru\n"
-"   * 简体中文: uim-pinyin\n"
-"   * 正体中文: uim-chewing\n"
-"   * 越南文: uim-viqr\n"
+" * 必需组件：uim\n"
+" * 输入特定语言所需的组件：\n"
+"   * 日文：uim-mozc (最佳) 或 uim-anthy 或 uim-skk\n"
+"   * 韩文：uim-byeoru\n"
+"   * 简体中文：uim-pinyin\n"
+"   * 繁体中文：uim-chewing\n"
+"   * 越南文：uim-viqr\n"
 "   * 通用多国语言函式库: uim-m17nlib\n"
-" * 应用程式平台支援:\n"
-"   * GNOME/GTK+: uim-gtk2.0 或 uim-gtk3 (一起安装)\n"
+" * 应用程序支持：\n"
+"   * GNOME/GTK+: uim-gtk2.0 或 uim-gtk3 (强烈推荐同时安装)\n"
 "   * KDE/Qt4: uim-qt\n"
 "   * EMACS: uim-el"
 
 #: ../data/25_hime.conf:2
 msgid "activate HIME Input Method Editor (hime)"
-msgstr "启动 HIME 输入法 (hime)"
+msgstr "启用 HIME 输入法"
 
 #: ../data/25_hime.conf:4
 msgid ""
@@ -401,14 +404,14 @@ msgid ""
 "  * GNOME/GTK+: hime-gtk3-immodule \n"
 "  * KDE/Qt: hime-qt4-immodule"
 msgstr ""
-"HIME 输入法 (hime)\n"
-" * 必要套件: hime\n"
-" * 输入特定语言的支援套件:\n"
-"  * 正体中文: hime-chewing\n"
-"  * 日文: hime-anthy\n"
-" * 应用程式平台支援:\n"
-"  * GNOME/GTK+: hime-gtk3-immodule \n"
-"  * KDE/Qt: hime-qt4-immodule"
+"HIME 输入法\n"
+" * 必须组件：hime\n"
+" * 输入特定语言所需的组件：\n"
+"  * 繁体中文：hime-chewing\n"
+"  * 日文：hime-anthy\n"
+" * 应用程序支持:\n"
+"  * GNOME/GTK+：hime-gtk3-immodule\n"
+"  * KDE/Qt：hime-qt4-immodule"
 
 #: ../data/48_scim.conf:2
 msgid "activate Smart Common Input Method (SCIM)"
@@ -431,23 +434,23 @@ msgid ""
 "   * KDE/Qt4: scim-bridge-client-qt4"
 msgstr ""
 "Smart Common Input Method (SCIM)\n"
-" * 必要套件: scim\n"
-" * 输入特定语言的支援套件:\n"
-"   * 日文: scim-mozc (最佳) 或 scim-anthy 或 scim-skk\n"
-"   * 韩文: scim-hangul\n"
-"   * 简体中文: scim-pinyin or scim-sunpinyin\n"
-"   * 正体中文: scim-chewing\n"
-"   * 泰文: scim-thai\n"
-"   * 越南文: scim-unikey\n"
-"   * 通用的输入法码表: scim-m17 或 scim-table* 套件\n"
-" * 应用程式平台支援:\n"
-"   * GNOME/GTK+: scim-bridge-client-gtk 和 scim-bridge-client-gtk3 (一起安"
-"装) \n"
+" * 必需组件：scim\n"
+" * 输入特定语言所需的组件：\n"
+"   * 简体中文：scim-pinyin 或 scim-sunpinyin\n"
+"   * 繁体中文：scim-chewing\n"
+"   * 日文：scim-mozc (最佳) 或 scim-anthy 或 scim-skk\n"
+"   * 韩文：scim-hangul\n"
+"   * 泰文：scim-thai\n"
+"   * 越南文：scim-unikey\n"
+"   * 通用的输入法码表：scim-m17 或 scim-table* 套件\n"
+" * 应用程序支持：\n"
+"   * GNOME/GTK+：scim-bridge-client-gtk 和 scim-bridge-client-gtk3\n"
+"                (强烈建议同时安装)\n"
 "   * KDE/Qt4: scim-bridge-client-qt4"
 
 #: ../data/50_gcin.conf:2
 msgid "activate Chinese input method (gcin)"
-msgstr "启动 gcin 中文输入法 (gcin)"
+msgstr "启用 gcin 中文输入法"
 
 #: ../data/50_gcin.conf:4
 msgid ""
@@ -461,7 +464,7 @@ msgstr ""
 
 #: ../data/50_hangul.conf:2
 msgid "activate Hangul (Korean) input method"
-msgstr "启动 Hangul (韩文) 输入法"
+msgstr "启用 Hangul (韩文)输入法"
 
 #: ../data/50_hangul.conf:4
 msgid ""
@@ -471,15 +474,15 @@ msgid ""
 " * KDE/Qt4: qimhangul-qt4\n"
 " * GUI companion: imhangul-status-applet"
 msgstr ""
-"Hangul (韩文) 输入法\n"
+"Hangul (韩文)输入法\n"
 " * XIM: nabi\n"
 " * GNOME/GTK+: imhangul-gtk2 and imhangul-gtk3\n"
 " * KDE/Qt4: qimhangul-qt4\n"
-" * GUI 支援套件: imhangul-status-applet"
+" * GUI 支持组件: imhangul-status-applet"
 
 #: ../data/60_thai.conf:2
 msgid "activate Thai input method with thai-libthai"
-msgstr "启动 thai-libthai 泰文输入法"
+msgstr "启用 thai-libthai 泰文输入法"
 
 #: ../data/60_thai.conf:4
 msgid ""
@@ -488,8 +491,8 @@ msgid ""
 " * No XIM nor KDE/Qt4 support (FIXME)"
 msgstr ""
 "thai-libthai 泰文输入法\n"
-" * GNOME/GTK+: gtk-im-libthai 和 gtk3-im-libthai\n"
-" * 尚无 XIM 或 KDE/Qt4 支援 (FIXME)"
+" * GNOME/GTK+：gtk-im-libthai 和 gtk3-im-libthai\n"
+" * 尚无 XIM 或 KDE/Qt4 支支持(FIXME)"
 
 #: ../data/79_none.conf:2
 msgid "do not use any IM for input"
@@ -516,7 +519,7 @@ msgid ""
 msgstr ""
 "kinput2 XIM 日文输入法\n"
 " * XIM: kinput2-* 套件择一使用\n"
-" * 汉字转换服务器: canna 或 wnn"
+" * 汉字转换服务器：canna 或 wnn"
 
 #: ../data/80_xsunpinyin.conf:2
 msgid "activate XIM for Chinese with Sunpinyin"
@@ -532,20 +535,20 @@ msgstr ""
 
 #: ../data/90_bogus.conf:2
 msgid "Bogus Configuration"
-msgstr "不存在的设定"
+msgstr "不存在的配置"
 
 #: ../data/90_bogus.conf:4
 msgid "Non existing configuration name is specified."
-msgstr "使用不存在的设定。"
+msgstr "指定了不存在的配置名称。"
 
 #: ../data/90_custom.conf:2
 msgid "Custom Configuration"
-msgstr "自订设定"
+msgstr "自定义配置"
 
 #: ../data/90_custom.conf:4
 msgid ""
 "Custom configuration is created by the user or administrator using editor."
-msgstr "使用者或是管理者透过编辑器所产生的自订设定。"
+msgstr "使用者或是管理者透过编辑器所产生的自定义设置。"
 
 #: ../data/90_missing.conf:2
 msgid "Missing"
@@ -553,14 +556,14 @@ msgstr "从缺"
 
 #: ../data/90_missing.conf:4
 msgid "Missing configuration file."
-msgstr "缺少设定档案。"
+msgstr "缺少配置文件。"
 
 #: ../share/im-config.common:46 ../share/im-config.common:64
 #: ../share/im-config.common:82 ../share/xinputrc.common:77
 #: ../share/xinputrc.common.in:77
 #, sh-format
 msgid "E: Configuration for $IM_CONFIG_NAME not found at $IM_CONFIG_CODE."
-msgstr "E: $IM_CONFIG_NAME 使用的设定在 $IM_CONFIG_CODE 找不到。"
+msgstr "E: $IM_CONFIG_NAME 使用的设置在 $IM_CONFIG_CODE 找不到。"
 
 #: ../share/xinputrc.common:33 ../share/xinputrc.common.in:33
 #, sh-format
