@@ -11,8 +11,8 @@ GTK_IM_MODULE=xim
 # use hime immodule only when available for both GTK 2.0 and 3.0
 
 IM_CONFIG_MARKER2=0
-for IM_CONFIG_MARKER in /usr/lib/*/gtk-2.0/*/immodules/hime.so \
-                        /usr/lib/gtk-2.0/*/immodules/hime.so ; do
+for IM_CONFIG_MARKER in /usr/lib/*/gtk-2.0/*/immodules/im-hime.so \
+                        /usr/lib/gtk-2.0/*/immodules/im-hime.so ; do
     if [ -e $IM_CONFIG_MARKER ]; then
         IM_CONFIG_MARKER2=1
         break
@@ -20,8 +20,8 @@ for IM_CONFIG_MARKER in /usr/lib/*/gtk-2.0/*/immodules/hime.so \
 done
 
 IM_CONFIG_MARKER3=0
-for IM_CONFIG_MARKER in /usr/lib/*/gtk-3.0/*/immodules/hime.so \
-                        /usr/lib/gtk-3.0/*/immodules/hime.so ; do
+for IM_CONFIG_MARKER in /usr/lib/*/gtk-3.0/*/immodules/im-hime.so \
+                        /usr/lib/gtk-3.0/*/immodules/im-hime.so ; do
     if [ -e $IM_CONFIG_MARKER ]; then
         IM_CONFIG_MARKER3=1
         break

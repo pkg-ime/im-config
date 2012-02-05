@@ -1,7 +1,14 @@
+im-config (0.11) unstable; urgency=low
+
+  * Updated zh_CN translation.  Thanks Aron Xu.
+  * Updated hime and gcin. Thanks Yao Wei.  Closes: #658581
+
+ -- Osamu Aoki <osamu@debian.org>  Sun, 05 Feb 2012 20:25:22 +0900
+
 im-config (0.10) unstable; urgency=low
 
   * Added German translation. Thanks Hendrik Knackstedt.
-  * Added HIME and Chinese translation.  Thank Yao Wei. Closes: #652522
+  * Added HIME and Chinese translation.  Thanks Yao Wei. Closes: #652522
 
  -- Osamu Aoki <osamu@debian.org>  Tue, 17 Jan 2012 22:06:36 +0900
 

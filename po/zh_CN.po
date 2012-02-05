@@ -7,11 +7,10 @@ msgid ""
 msgstr ""
 "Project-Id-Version: im-config 0.9\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-01-15 21:49+0800\n"
+"POT-Creation-Date: 2012-02-04 19:30+0800\n"
 "PO-Revision-Date: 2012-01-24 00:18+0800\n"
 "Last-Translator: Aron Xu <aron@debian.org>\n"
 "Language-Team: Chinese (simplified) <i18n-zh@googlegroups.com>\n"
-"Language: Chinese (Simplified)>\n"
 "Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -46,16 +45,16 @@ msgid ""
 "Explicit selection is not required to enable the automatic configuration if "
 "the active one is default/auto/cjkv/missing."
 msgstr ""
-"如果正在使用的是 default/auto/cjkv/missing，您不需要另外进行选择"
-"即可使用默认配置。"
+"如果正在使用的是 default/auto/cjkv/missing，您不需要另外进行选择即可使用默认"
+"配置。"
 
 #: ../im-config:64
 msgid ""
 "If a daemon program for the previous configuration is re-started by the X "
 "session manager, you may need to kill it manually with kill(1)."
 msgstr ""
-"如果使用旧配置的守护进程被 X 会话管理器重启，您可能需要使用 kill(1) 手工"
-"将其杀死。"
+"如果使用旧配置的守护进程被 X 会话管理器重启，您可能需要使用 kill(1) 手工将其"
+"杀死。"
 
 #: ../im-config:65
 #, sh-format
@@ -413,6 +412,30 @@ msgstr ""
 "  * GNOME/GTK+：hime-gtk3-immodule\n"
 "  * KDE/Qt：hime-qt4-immodule"
 
+#: ../data/26_gcin.conf:2
+msgid "activate Chinese input method (gcin)"
+msgstr "启用 gcin 中文输入法"
+
+#: ../data/26_gcin.conf:4
+msgid ""
+"Chinese input method (gcin)\n"
+" * Required for all: gcin\n"
+" * Language specific input conversion support:\n"
+"  * Traditional Chinese: gcin-chewing\n"
+"  * Japanese: gcin-anthy\n"
+" * Application platform support:\n"
+"  * GNOME/GTK+: gcin-gtk3-immodule \n"
+"  * KDE/Qt: gcin-qt4-immodule"
+msgstr ""
+"gcin 中文输入法\n"
+" * 必须组件：gcin\n"
+" * 输入特定语言所需的组件：\n"
+"  * 繁体中文：gcin-chewing\n"
+"  * 日文：gcin-anthy\n"
+" * 应用程序支持:\n"
+"  * GNOME/GTK+：gcin-gtk3-immodule\n"
+"  * KDE/Qt：gcin-qt4-immodule"
+
 #: ../data/48_scim.conf:2
 msgid "activate Smart Common Input Method (SCIM)"
 msgstr "启动 Smart Common Input Method (SCIM)"
@@ -447,20 +470,6 @@ msgstr ""
 "   * GNOME/GTK+：scim-bridge-client-gtk 和 scim-bridge-client-gtk3\n"
 "                (强烈建议同时安装)\n"
 "   * KDE/Qt4: scim-bridge-client-qt4"
-
-#: ../data/50_gcin.conf:2
-msgid "activate Chinese input method (gcin)"
-msgstr "启用 gcin 中文输入法"
-
-#: ../data/50_gcin.conf:4
-msgid ""
-"Chinese input method (gcin)\n"
-" * XIM and GNOME/GTK+: gcin\n"
-" * KDE/Qt4: gcin-qt4-immodule"
-msgstr ""
-"gcin 中文输入法 (gcin)\n"
-" * XIM 与 GNOME/GTK+: gcin\n"
-" * KDE/Qt4: gcin-qt4-immodule"
 
 #: ../data/50_hangul.conf:2
 msgid "activate Hangul (Korean) input method"
@@ -559,18 +568,26 @@ msgid "Missing configuration file."
 msgstr "缺少配置文件。"
 
 #: ../share/im-config.common:46 ../share/im-config.common:64
-#: ../share/im-config.common:82 ../share/xinputrc.common:77
-#: ../share/xinputrc.common.in:77
+#: ../share/im-config.common:82 ../share/xinputrc.common.in:77
 #, sh-format
 msgid "E: Configuration for $IM_CONFIG_NAME not found at $IM_CONFIG_CODE."
 msgstr "E: $IM_CONFIG_NAME 使用的设置在 $IM_CONFIG_CODE 找不到。"
 
-#: ../share/xinputrc.common:33 ../share/xinputrc.common.in:33
+#: ../share/xinputrc.common.in:33
 #, sh-format
 msgid "Script for $IM_CONFIG_NAME started at $IM_CONFIG_CODE."
 msgstr "$IM_CONFIG_NAME 使用的 script 从 $IM_CONFIG_CODE 启动。"
 
-#: ../share/xinputrc.common:37 ../share/xinputrc.common.in:37
+#: ../share/xinputrc.common.in:37
 #, sh-format
 msgid "E: Script for $IM_CONFIG_NAME not found at $IM_CONFIG_CODE."
 msgstr "E: $IM_CONFIG_NAME 使用的 script 在 $IM_CONFIG_CODE 找不到"
+
+#~ msgid ""
+#~ "Chinese input method (gcin)\n"
+#~ " * XIM and GNOME/GTK+: gcin\n"
+#~ " * KDE/Qt4: gcin-qt4-immodule"
+#~ msgstr ""
+#~ "gcin 中文输入法 (gcin)\n"
+#~ " * XIM 与 GNOME/GTK+: gcin\n"
+#~ " * KDE/Qt4: gcin-qt4-immodule"

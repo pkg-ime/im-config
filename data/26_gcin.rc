@@ -1,0 +1,45 @@
+# start gcin
+# vim: set sts=4 expandtab:
+
+# start gcin daemon
+/usr/bin/gcin &
+
+# set variables for the plain XIM
+XMODIFIERS=@im=gcin
+
+GTK_IM_MODULE=xim
+# use gcin immodule only when available for both GTK 2.0 and 3.0
+
+IM_CONFIG_MARKER2=0
+for IM_CONFIG_MARKER in /usr/lib/*/gtk-2.0/*/immodules/im-gcin.so \
+                        /usr/lib/gtk-2.0/*/immodules/im-gcin.so ; do
+    if [ -e $IM_CONFIG_MARKER ]; then
+        IM_CONFIG_MARKER2=1
+        break
+    fi
+done
+
+IM_CONFIG_MARKER3=0
+for IM_CONFIG_MARKER in /usr/lib/*/gtk-3.0/*/immodules/im-gcin.so \
+                        /usr/lib/gtk-3.0/*/immodules/im-gcin.so ; do
+    if [ -e $IM_CONFIG_MARKER ]; then
+        IM_CONFIG_MARKER3=1
+        break
+    fi
+done
+if [ $IM_CONFIG_MARKER2 = 1 ] && [ $IM_CONFIG_MARKER3 = 1 ] ; then
+    GTK_IM_MODULE=gcin
+fi
+
+QT4_IM_MODULE=xim
+# use immodule when available for Qt4
+for IM_CONFIG_MARKER in /usr/lib/*/qt4/plugins/inputmethods/im-gcin.so \
+                        /usr/lib/qt4/plugins/inputmethods/im-gcin.so ; do
+    if [ -e $IM_CONFIG_MARKER ]; then
+        QT4_IM_MODULE=gcin
+        break
+    fi
+done
+
+# gcin has no clutter support, and qt3 immodule is not compiled.
+CLUTTER_IM_MODULE=xim
